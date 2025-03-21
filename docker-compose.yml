@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: family_health_postgres  
+    environment:
+      POSTGRES_USER: root         
+      POSTGRES_PASSWORD: password  
+      POSTGRES_DB: family_health  
+    ports:
+      - "5433:5432"                
+    volumes:
+      - family_health_data:/var/lib/postgresql/data  
+    restart: unless-stopped
+
+volumes:
+  family_health_data:           
