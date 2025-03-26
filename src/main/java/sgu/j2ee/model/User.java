@@ -1,18 +1,34 @@
 package sgu.j2ee.model;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tbl_user")
 @Data
-public class User {
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     private String username;
-    private String passwordHash;
+    private String password;
     private String email;
 
     @ManyToOne
@@ -31,4 +47,12 @@ public class User {
     private String specialty; 
 
     private String relationshipToHead;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return role.getPermissions().stream()
+                .map(permission -> (GrantedAuthority) permission::getPermissionName)
+                .collect(Collectors.toList());
+    }
+
 }
