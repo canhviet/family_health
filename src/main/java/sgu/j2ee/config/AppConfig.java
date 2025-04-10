@@ -21,7 +21,15 @@ import sgu.j2ee.service.UserService;
 @Configuration
 @RequiredArgsConstructor
 public class AppConfig {
-    private String[] WHITE_LIST = {"/auth/**"};
+    private String[] WHITE_LIST = {
+        "/auth/**",
+        "/swagger-ui/**",
+        "/swagger-ui.html",
+        "/v3/api-docs/**",
+        "/swagger-resources/**",
+        "/webjars/**",
+        "/api/user/**"
+    };
 
     private final UserService userService;
     private final PreFilter preFilter;
@@ -33,7 +41,7 @@ public class AppConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins("http://localhost:4200","http://localhost:8083")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .exposedHeaders("Authorization")
@@ -43,14 +51,26 @@ public class AppConfig {
         };
     }
 
+    // @Bean
+    // public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+    //     http.csrf(AbstractHttpConfigurer::disable)
+    //             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+    //                     .requestMatchers(WHITE_LIST).permitAll()
+    //                     .anyRequest().authenticated())
+    //             .authenticationProvider(provider())
+    //             .addFilterBefore(preFilter, UsernamePasswordAuthenticationFilter.class);
+    //     return http.build();
+    // }
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers(WHITE_LIST).permitAll()
-                        .anyRequest().authenticated())
-                .authenticationProvider(provider())
-                .addFilterBefore(preFilter, UsernamePasswordAuthenticationFilter.class);
+        http
+            .csrf(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                .requestMatchers(WHITE_LIST).permitAll()
+                .anyRequest().authenticated())
+            .authenticationProvider(provider())
+            .addFilterBefore(preFilter, UsernamePasswordAuthenticationFilter.class);
+        
         return http.build();
     }
 

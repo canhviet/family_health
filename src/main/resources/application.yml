@@ -14,10 +14,18 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  springfox:
+    documentation:
+      swagger-ui:
+        base-url: /api
 jwt:
   expiryHour: 1
   expiryDay: 14
   accessKey: B4h/HsBea1KQOo0HSF8x+5F4N5KoLhZlgNgdZod0jYE=
   refreshKey: EGQb+V9raSWyfXM3AAtbGP0RxGcmPUZ4UU2ZEySHi30=
   resetKey: thgSg7z69yy/lCCfssBnNnqliySBe7JGN6Ljx9ZHvFU=
+
+  

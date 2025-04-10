@@ -1,6 +1,7 @@
 package sgu.j2ee.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tbl_test_results")
 @Data
+@Builder
 public class TestResults {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
