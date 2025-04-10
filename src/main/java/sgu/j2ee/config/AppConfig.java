@@ -36,6 +36,7 @@ public class AppConfig {
                         .allowedOrigins("http://localhost:4200")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
+                        .exposedHeaders("Authorization")
                         .allowCredentials(true)
                         .maxAge(3600);
             }
