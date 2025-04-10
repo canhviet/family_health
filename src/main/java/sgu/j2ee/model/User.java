@@ -1,5 +1,6 @@
 package sgu.j2ee.model;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -41,11 +42,13 @@ public class User implements UserDetails {
 
     private String firstName;
     private String lastName;
-    private String dob; 
+    private LocalDate dob; 
     private String gender;
-    private String contactInfo;
+    private String phone;
+    private String address;
     private String specialty; 
-
+    private String healthInsuranceCode;
+    private String citizenId;
     private String relationshipToHead;
 
     @Override

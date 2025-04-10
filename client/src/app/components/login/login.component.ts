@@ -28,13 +28,19 @@ export class LoginComponent {
   remember: boolean = false;
 
   ngOnInit() {
-    const token = this.cookieService.get('token');
+    const token = this.authService.getTokenData();
 
     if (token) {
-      this.router.navigate(['home']);
-      const decoded = jwtDecode<JwtPayload>(token);
-      console.log('Thông tin token:', decoded.exp);
-      console.log('Thông tin token:', decoded.roles);
+      const decoded = jwtDecode<JwtPayload>(token.accessToken);
+
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      if (decoded.exp < currentTime) {
+        this.authService.removeToken();
+        this.router.navigate(['']);
+      } else {
+        this.router.navigate(['home']);
+      }
     }
   }
 

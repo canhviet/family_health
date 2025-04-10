@@ -20,9 +20,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         req: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-        if (req.method === 'OPTIONS') {
-            return next.handle(req);
-        }
+
 
         const cookie = this.cookieService.get('token');
         const session = window.sessionStorage.getItem('token');

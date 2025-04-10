@@ -77,8 +77,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long saveUser(UserRequest request) {
         User user = User.builder()
-                .firstName(request.getFirst_name())
-                .lastName(request.getLast_name())
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();

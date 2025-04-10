@@ -21,4 +21,5 @@ public class MedicalHistory {
     private LocalDate diagnosisDate;
     private String treatingDoctor;
     private String notes;
+    private LocalDate revisitDate; // message if nearly
 }

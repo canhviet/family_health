@@ -6,9 +6,4 @@ import { Component } from '@angular/core';
   styleUrl: './topbar.component.css',
 })
 export class TopbarComponent {
-  sidebarVisible = true;
-
-  toggleSidebar() {
-    this.sidebarVisible = !this.sidebarVisible;
-  }
 }

@@ -17,7 +17,11 @@ public class Documents {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private String documentType;
+    @ManyToOne
+    @JoinColumn(name = "medical_history_id")
+    private MedicalHistory medicalHistory;
+
     private String documentUrl;
+    private String documentName;
     private LocalDateTime uploadDate;
 }

@@ -14,9 +14,9 @@ public class UserRequest implements Serializable{
     String password;
 
     @NotNull(message = "first name must be not null")
-    String first_name;
+    String firstName;
 
     @NotNull(message = "last name must be not null")
-    String last_name;
+    String lastName;
 
 }
