@@ -7,5 +7,5 @@ import sgu.j2ee.model.Permission;
 
 @Repository
 public interface PermissionRepository extends JpaRepository<Permission, Long>{
-
+    Permission findByPermissionName(String permissionName);
 }

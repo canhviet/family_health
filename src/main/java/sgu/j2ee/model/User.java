@@ -46,7 +46,6 @@ public class User implements UserDetails {
     private String gender;
     private String phone;
     private String address;
-    private String specialty; 
     private String healthInsuranceCode;
     private String citizenId;
     private String relationshipToHead;

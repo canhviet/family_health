@@ -3,65 +3,72 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProfileComponent } from './components/home/profile/profile.component';
-import { MedicalHistoryComponent } from './components/home/medical-history/medical-history.component';
-import { AllergiesComponent } from './components/home/allergies/allergies.component';
-import { ImmunizationComponent } from './components/home/immunization/immunization.component';
-import { MedicationComponent } from './components/home/medication/medication.component';
-import { TestResultComponent } from './components/home/test-result/test-result.component';
-import { DocumentComponent } from './components/home/document/document.component';
+import { MedicalHistoryComponent } from './components/doctor/medical-history/medical-history.component';
+import { AllergiesComponent } from './components/doctor/allergies/allergies.component';
+import { ImmunizationComponent } from './components/doctor/immunization/immunization.component';
+import { TestResultComponent } from './components/doctor/test-result/test-result.component';
+import { ProfileManagementComponent } from './components/user/profile-management/profile-management.component';
+import { MedicalRecordsComponent } from './components/user/medical-records/medical-records.component';
+import { HomeComponent } from './components/user/home/home.component';
+import { OverviewComponent } from './components/user/overview/overview.component';
 
 const routes: Routes = [
-  {
-      path: '',
-      component: LoginComponent,
-  },
-  {
-      path: 'login',
-      component: LoginComponent,
-  },
-  {
-      path: 'sign_up',
-      component: RegisterComponent,
-  },
-  {
-      path: 'home',
-      component: LayoutComponent,
-      children: [
-        {
-            path: 'profile',
-            component: ProfileComponent
-        },
-        {
-            path: 'medical-history',
-            component: MedicalHistoryComponent
-        },
-        {
-            path: 'allergies',
-            component: AllergiesComponent
-        },
-        {
-            path: 'immunization',
-            component: ImmunizationComponent
-        },
-        {
-            path: 'medication',
-            component: MedicationComponent
-        },
-        {
-            path: 'test-result',
-            component: TestResultComponent
-        },
-        {
-            path: 'document',
-            component: DocumentComponent
-        }
-      ],
-  },
+    {
+        path: '',
+        component: LoginComponent,
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+    },
+    {
+        path: 'sign_up',
+        component: RegisterComponent,
+    },
+    {
+        path: 'home',
+        component: HomeComponent,
+        children: [
+            {
+                path: '',
+                component: OverviewComponent
+            },
+            {
+                path: 'profile',
+                component: ProfileManagementComponent
+            },
+            {
+                path: 'medical-record',
+                component: MedicalRecordsComponent
+            },
+        ]
+    },
+    {
+        path: 'import',
+        component: LayoutComponent,
+        children: [
+            {
+                path: 'medical',
+                component: MedicalHistoryComponent
+            },
+            {
+                path: 'allergy',
+                component: AllergiesComponent
+            },
+            {
+                path: 'immunization',
+                component: ImmunizationComponent
+            },
+            {
+                path: 'test',
+                component: TestResultComponent
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

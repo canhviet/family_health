@@ -1,0 +1,89 @@
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+/>
+
+<div class="medical-records">
+
+    <h1 class="page-title">Medical Records</h1>
+    <p class="page-description">View all your medical documents</p>
+
+    <div class="search-section">
+        <div class="search-wrapper">
+            <input
+                type="text"
+                placeholder="Search records..."
+                class="search-input"
+            />
+            <i class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></i>
+        </div>
+    </div>
+
+    <section class="filters">
+        <h2 class="filter-title">Filter by</h2>
+        <div class="filter-controls">
+            <div class="filter-group">
+                <label class="filter-label">From</label>
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        placeholder="Select dates"
+                        class="filter-input"
+                    />
+                    <i class="filter-icon"><i class="fa-solid fa-calendar-day"></i></i>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">To</label>
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        placeholder="Select dates"
+                        class="filter-input"
+                    />
+                    <i class="filter-icon"><i class="fa-solid fa-calendar-day"></i></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <nav class="records-nav">
+        <div class="nav-item">All Records</div>
+        <div class="nav-item">Test Results</div>
+        <div class="nav-item">Imaging</div>
+        <div class="nav-item">Prescriptions</div>
+        <div class="nav-item">Reports</div>
+    </nav>
+
+    <h2 class="records-count">Records</h2>
+
+    <div class="records-list">
+        <div class="record-item">
+            <i class="record-icon"><i class="fa-solid fa-file-medical"></i></i>
+            <div class="record-title">Blood Test Results</div>
+            <div class="record-doctor">Dr. Trần Minh</div>
+            <div class="record-date">15/05/2023</div>
+            <div class="record-actions">
+                <i class="action-icon"><i class="fa-solid fa-eye"></i></i>
+                <i class="action-icon"><i class="fa-solid fa-download"></i></i>
+            </div>
+        </div>
+
+        <div class="record-item">
+            <i class="record-icon"><i class="fa-solid fa-image"></i></i>
+            <div class="record-title">X-Ray Image</div>
+            <div class="record-doctor">Dr. Phạm Thành</div>
+            <div class="record-date">03/04/2023</div>
+            <div class="record-actions">
+                <i class="action-icon"><i class="fa-solid fa-eye"></i></i>
+                <i class="action-icon"><i class="fa-solid fa-download"></i></i>
+            </div>
+        </div>
+
+
+    <div class="pagination">
+        <div class="pagination-info">Showing 1-8 of 24 records</div>
+        <button class="load-more-btn">Load More</button>
+    </div>
+</div>

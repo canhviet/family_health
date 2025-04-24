@@ -1,0 +1,472 @@
+.overview {
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    padding: 55px 80px 112px;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+
+    @media (max-width: 991px) {
+        padding: 55px 20px 100px;
+    }
+}
+
+.overview-container {
+    display: flex;
+    width: 800px;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.nav-item {
+    color: rgba(17, 24, 39, 1);
+    font-size: 14px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-weight: 500;
+    align-self: start;
+}
+
+.welcome-text {
+    color: rgba(10, 10, 10, 1);
+    font-size: 24px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-weight: 600;
+    line-height: 1;
+    align-self: start;
+    margin-top: 39px;
+}
+
+.overview-text {
+    color: rgba(102, 102, 102, 1);
+    font-size: 16px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: 1;
+    align-self: start;
+    margin-top: 33px;
+}
+
+.section-title {
+    color: rgba(10, 10, 10, 1);
+    font-size: 18px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-weight: 500;
+    line-height: 1;
+    align-self: start;
+    margin-top: 40px;
+
+    &:first-of-type {
+        margin-top: 69px;
+    }
+
+    @media (max-width: 991px) {
+        &:first-of-type {
+            margin-top: 40px;
+        }
+    }
+}
+
+.quick-actions-grid {
+    margin-top: 27px;
+
+    @media (max-width: 991px) {
+        max-width: 100%;
+    }
+}
+
+.quick-actions-row {
+    gap: 20px;
+    display: flex;
+
+    @media (max-width: 991px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+}
+
+.action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    line-height: normal;
+    width: 33%;
+    margin-left: 0;
+
+    @media (max-width: 991px) {
+        width: 100%;
+    }
+
+    &:not(:first-child) {
+        margin-left: 20px;
+
+        @media (max-width: 991px) {
+            margin-left: 0;
+        }
+    }
+}
+
+.action-content {
+    border-radius: 16px;
+    background-color: rgba(99, 74, 255, 0.05);
+    display: flex;
+    flex-grow: 1;
+    padding: 24px 52px 24px 24px;
+    flex-direction: column;
+    align-items: start;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    width: 100%;
+
+    @media (max-width: 991px) {
+        margin-top: 12px;
+        padding: 24px 20px;
+    }
+}
+
+.action-icon {
+    border-radius: 9999px;
+    background-color: rgba(99, 74, 255, 0.05);
+    width: 36px;
+    padding: 0 8px;
+    font-family: Material Icons, -apple-system, Roboto, Helvetica, sans-serif;
+    color: rgba(99, 74, 255, 1);
+    white-space: nowrap;
+    line-height: 1;
+    height: 36px;
+
+    @media (max-width: 991px) {
+        white-space: initial;
+    }
+}
+
+.action-title {
+    color: rgba(10, 10, 10, 1);
+    font-weight: 600;
+    line-height: 28px;
+    margin-top: 4px;
+}
+
+.action-description {
+    color: rgba(107, 114, 128, 1);
+    font-size: 14px;
+    line-height: 22px;
+    z-index: 10;
+}
+
+.action-button {
+    border-radius: 8px;
+    background-color: rgba(99, 74, 255, 1);
+    margin-top: 22px;
+    padding: 11px 13px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 600;
+    text-align: center;
+}
+
+.appointment-card {
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    align-items: stretch;
+    gap: 20px;
+    color: rgba(0, 0, 0, 1);
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &:first-of-type {
+        margin-top: 35px;
+    }
+
+    @media (max-width: 991px) {
+        max-width: 100%;
+        margin-right: 3px;
+    }
+}
+
+.appointment-info {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.doctor-avatar {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 44px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+}
+
+.doctor-info {
+    margin: auto 0;
+}
+
+.appointment-actions {
+    display: flex;
+    margin: auto 0;
+    align-items: stretch;
+    gap: 17px;
+    font-family: Material Icons, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    white-space: nowrap;
+    line-height: 1;
+
+    @media (max-width: 991px) {
+        white-space: initial;
+    }
+}
+
+.record-item {
+    display: flex;
+    width: 100%;
+    padding: 20px 8px;
+    align-items: stretch;
+    gap: 20px;
+    font-weight: 400;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @media (max-width: 991px) {
+        max-width: 100%;
+    }
+}
+
+.record-info {
+    display: flex;
+    align-items: stretch;
+    gap: 15px;
+}
+
+.record-icon {
+    color: rgba(0, 0, 0, 1);
+    font-size: 20px;
+    font-family: Material Icons, -apple-system, Roboto, Helvetica, sans-serif;
+    line-height: 1;
+}
+
+.record-title {
+    color: rgba(17, 24, 39, 1);
+    font-size: 14px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    margin: auto 0;
+    flex-basis: auto;
+}
+
+.record-doctor {
+    color: rgba(17, 24, 39, 1);
+    font-size: 14px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    margin: auto 0;
+}
+
+.record-date {
+    color: rgba(17, 24, 39, 1);
+    font-size: 14px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    margin: auto 0;
+}
+
+.record-actions {
+    align-self: start;
+    display: flex;
+    gap: 10px;
+    font-family: Material Icons, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 1);
+    white-space: nowrap;
+    line-height: 1;
+
+    @media (max-width: 991px) {
+        white-space: initial;
+    }
+}
+
+.metrics-grid {
+    margin-top: 28px;
+
+    @media (max-width: 991px) {
+        max-width: 100%;
+    }
+}
+
+.metrics-row {
+    gap: 20px;
+    display: flex;
+
+    @media (max-width: 991px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+}
+
+.metric-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    line-height: normal;
+    width: 33%;
+    margin-left: 0;
+
+    &:not(:first-child) {
+        margin-left: 20px;
+
+        @media (max-width: 991px) {
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: 991px) {
+        width: 100%;
+    }
+}
+
+.metric-content {
+    border-radius: 16px;
+    background-color: rgba(99, 74, 255, 0.05);
+    display: flex;
+    flex-grow: 1;
+    padding: 26px 52px 26px 24px;
+    flex-direction: column;
+    align-items: start;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgba(10, 10, 10, 1);
+    font-weight: 400;
+    width: 100%;
+
+    @media (max-width: 991px) {
+        margin-top: 12px;
+        padding: 26px 20px;
+    }
+}
+
+.metric-icon {
+    border-radius: 9999px;
+    background-color: rgba(99, 74, 255, 0.05);
+    width: 36px;
+    padding: 0 8px;
+    font-family: Material Icons, -apple-system, Roboto, Helvetica, sans-serif;
+    color: rgba(99, 74, 255, 1);
+    white-space: nowrap;
+    line-height: 1;
+    height: 36px;
+
+    @media (max-width: 991px) {
+        white-space: initial;
+    }
+}
+
+.metric-label {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 2;
+    margin-top: 18px;
+}
+
+.metric-value {
+    font-weight: 600;
+    line-height: 1.4;
+    margin-top: 14px;
+}
+
+.metric-update {
+    color: rgba(107, 114, 128, 1);
+    font-size: 14px;
+    line-height: 2;
+    margin-top: 12px;
+}
+
+.medication-container {
+    display: flex;
+    margin-top: 38px;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @media (max-width: 991px) {
+        max-width: 100%;
+        margin-right: 3px;
+    }
+}
+
+.medication-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.medication-item {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+
+    &:not(:first-child) {
+        margin-top: 12px;
+    }
+}
+
+.medication-icon {
+    border-radius: 12px;
+    background-color: rgba(99, 74, 255, 0.05);
+    padding: 12px;
+    font-family: Material Icons, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgba(99, 74, 255, 1);
+    font-weight: 400;
+    white-space: nowrap;
+    line-height: 1;
+    width: 44px;
+    height: 44px;
+
+    @media (max-width: 991px) {
+        white-space: initial;
+    }
+}
+
+.medication-info {
+    color: rgba(0, 0, 0, 1);
+    font-size: 14px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-weight: 500;
+    line-height: 24px;
+    margin: auto 0;
+}
+
+.action-buttons {
+    align-self: stretch;
+    display: flex;
+    margin-top: 15px;
+    align-items: stretch;
+    gap: 20px;
+    font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.primary-button {
+    border-radius: 12px;
+    background-color: rgba(99, 74, 255, 1);
+    padding: 15px 18px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.secondary-button {
+    border-radius: 12px;
+    background-color: rgba(99, 74, 255, 0.05);
+    padding: 13px 17px;
+    color: rgba(99, 74, 255, 1);
+}

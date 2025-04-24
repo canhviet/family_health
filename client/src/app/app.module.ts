@@ -13,48 +13,66 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
-import { MedicalHistoryComponent } from './components/home/medical-history/medical-history.component';
-import { AllergiesComponent } from './components/home/allergies/allergies.component';
-import { ImmunizationComponent } from './components/home/immunization/immunization.component';
-import { MedicationComponent } from './components/home/medication/medication.component';
-import { TestResultComponent } from './components/home/test-result/test-result.component';
-import { DocumentComponent } from './components/home/document/document.component';
-import { ProfileComponent } from './components/home/profile/profile.component';
+import { MedicalHistoryComponent } from './components/doctor/medical-history/medical-history.component';
+import { AllergiesComponent } from './components/doctor/allergies/allergies.component';
+import { ImmunizationComponent } from './components/doctor/immunization/immunization.component';
+import { TestResultComponent } from './components/doctor/test-result/test-result.component';
+import { MedicalRecordsComponent } from './components/user/medical-records/medical-records.component';
+import { ProfileManagementComponent } from './components/user/profile-management/profile-management.component';
+import { HomeComponent } from './components/user/home/home.component';
+import { OverviewComponent } from './components/user/overview/overview.component';
+import { AddMedicalComponent } from './components/doctor/medical-history/add-medical/add-medical.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { AddTestComponent } from './components/doctor/test-result/add-test/add-test.component';
+import { AddAllergyComponent } from './components/doctor/allergies/add-allergy/add-allergy.component';
+import { AddImmunizationComponent } from './components/doctor/immunization/add-immunization/add-immunization.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LayoutComponent,
-    SidebarComponent,
-    TopbarComponent,
-    LoginComponent,
-    RegisterComponent,
-    MedicalHistoryComponent,
-    AllergiesComponent,
-    ImmunizationComponent,
-    MedicationComponent,
-    TestResultComponent,
-    DocumentComponent,
-    ProfileComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-  }),
-  ],
-  providers: [
-    CookieService,
-    provideAnimations(),
-    httpInterceptorProviders,
-    provideHttpClient(withInterceptorsFromDi()),
-  ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        LayoutComponent,
+        SidebarComponent,
+        TopbarComponent,
+        LoginComponent,
+        RegisterComponent,
+        MedicalHistoryComponent,
+        AllergiesComponent,
+        ImmunizationComponent,
+        TestResultComponent,
+        MedicalRecordsComponent,
+        ProfileManagementComponent,
+        HomeComponent,
+        OverviewComponent,
+        AddMedicalComponent,
+        AddTestComponent,
+        AddAllergyComponent,
+        AddImmunizationComponent
+    ],
+    imports: [
+        BrowserModule,
+        MatDialogModule,
+        FormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        ToastrModule.forRoot({
+            timeOut: 3000,
+            positionClass: 'toast-top-right',
+            preventDuplicates: true,
+        }),
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule
+    ],
+    providers: [
+        CookieService,
+        provideAnimations(),
+        httpInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi()),
+    ],
+    bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

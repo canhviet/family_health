@@ -1,38 +1,56 @@
 .topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #34495e;
-  color: white;
-  padding: 10px 20px;
-  height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #005b96; /* Deep medical blue */
+    color: white;
+    padding: 10px 20px;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: "Roboto", sans-serif;
 }
 
 .topbar-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.topbar-left span {
+    font-size: 1.1rem;
+    font-weight: 400;
 }
 
 .menu-toggle {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    color: #b3e0ff; /* Light blue hover */
 }
 
 .topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .logout-btn {
-  background-color: #e74c3c;
-  border: none;
-  padding: 5px 15px;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+    background-color: #d32f2f; /* Red for logout, medical urgency */
+    border: none;
+    padding: 8px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #b71c1c; /* Darker red on hover */
 }

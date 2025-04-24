@@ -37,7 +37,7 @@
                           #username="ngModel"
                           required
                       />
-                      <label class="form-label" for="form3Example3"></label>
+                      <label class="form-label"></label>
                       <div
                           *ngIf="username.touched && username.invalid"
                           class="text-danger"
@@ -72,18 +72,6 @@
                   <div
                       class="d-flex justify-content-between align-items-center"
                   >
-                      <div class="form-check mb-0">
-                          <input
-                              class="form-check-input me-2"
-                              type="checkbox"
-                              id="cb"
-                              [(ngModel)] = "remember"
-                              name="remember"
-                          />
-                          <label class="form-check-label" for="cb"
-                              >Remember me</label
-                          >
-                      </div>
                       <a href="#!" class="text-body">Forgot password?</a>
                   </div>
 

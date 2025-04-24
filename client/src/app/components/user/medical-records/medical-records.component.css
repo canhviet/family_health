@@ -1,0 +1,215 @@
+.medical-records {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 200px;
+    font-family: "Inter", sans-serif;
+}
+
+@media (max-width: 991px) {
+    .medical-records {
+        max-width: 991px;
+        padding: 40px 100px;
+    }
+}
+
+@media (max-width: 640px) {
+    .medical-records {
+        max-width: 640px;
+        padding: 20px;
+    }
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0a0a0a;
+    margin-bottom: 32px;
+}
+
+.page-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 48px;
+}
+
+.search-section {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 640px) {
+    .search-section {
+        flex-direction: column;
+    }
+}
+
+.search-wrapper {
+    position: relative;
+    flex-grow: 1;
+}
+
+.search-input,
+.filter-input {
+    width: 100%;
+    height: 40px;
+    padding: 11.5px 16px;
+    border-radius: 12px;
+    border: none;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: #f8f8f7;
+}
+
+.search-icon,
+.filter-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000;
+    font-size: 16px;
+}
+
+.filters {
+    margin-bottom: 36px;
+}
+
+.filter-title {
+    font-size: 16px;
+    color: #0a0a0a;
+    margin-bottom: 24px;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 24px;
+}
+
+@media (max-width: 640px) {
+    .filter-controls {
+        flex-direction: column;
+    }
+}
+
+.filter-group {
+    flex: 1;
+}
+
+.filter-label {
+    font-size: 14px;
+    color: #0a0a0a;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.records-nav {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 36px;
+}
+
+.nav-item {
+    padding: 12px 0;
+    color: #7c7c7c;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.records-count {
+    font-size: 18px;
+    color: #0a0a0a;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.records-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.record-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+@media (max-width: 640px) {
+    .record-item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+.record-icon {
+    font-size: 20px;
+    color: #000;
+    margin-right: 8px;
+}
+
+.record-title,
+.record-doctor,
+.record-date {
+    width: 220px;
+    font-size: 14px;
+    color: #111827;
+}
+
+@media (max-width: 640px) {
+    .record-title,
+    .record-doctor,
+    .record-date {
+        width: auto;
+    }
+}
+
+.record-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+@media (max-width: 640px) {
+    .record-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
+    }
+}
+
+.action-icon {
+    font-size: 20px;
+    color: #000;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+}
+
+.pagination-info {
+    font-size: 16px;
+    color: #666;
+}
+
+.load-more-btn {
+    padding: 11.5px 16px;
+    border: none;
+    border-radius: 12px;
+    color: #634aff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: rgba(99, 74, 255, 0.05);
+}
