@@ -1,2 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'ngx-toastr/toastr';
+@import "ngx-toastr/toastr";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+:root {
+    --color-indigo-500: #6366f1;
+    --color-neutral-950: #0a0a0a;
+    --color-stone-500: #78716c;
+    --color-gray-900: #111827;
+    --color-gray-500: #6b7280;
+    --color-black: #000000;
+    --color-white: #ffffff;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .max-md-wrap {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 640px) {
+    .max-sm-column {
+        flex-direction: column;
+    }
+}
+
+.mat-dialog-container {
+    margin: auto !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    max-height: 90vh;
+    overflow: auto;
+}

@@ -1,0 +1,227 @@
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+/>
+<div class="profile-container">
+    <div class="breadcrumb">
+        <div class="breadcrumb-item">
+            <span>Dashboard</span>
+            <div>
+                <div
+                    innerHTML="<svg id='1:98' layer-name='SVG' width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg' class='chevron' style='margin: 0 8px'>
+          <path d='M6.02002 12L10.02 8L6.02002 4' stroke='#6B7280' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'></path>
+        </svg>"
+                ></div>
+            </div>
+        </div>
+        <div class="breadcrumb-current">Profile Management</div>
+    </div>
+    <h1 class="page-title">Profile Management</h1>
+    <p class="page-description">
+        Update your personal information and medical documents
+    </p>
+
+    <nav class="tab-navigation">
+        <div class="tab-item">Personal Information</div>
+        <div class="tab-item">Medical Insurance</div>
+        <div class="tab-item">Documents</div>
+        <div class="tab-item">Professional Info</div>
+    </nav>
+
+    <section class="personal-info-section">
+        <h2 class="section-title">Personal Information</h2>
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        value="Nguyễn Văn A"
+                        class="form-input"
+                    />
+                    <span class="input-icon">person</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Date of Birth</label>
+                <div class="input-wrapper">
+                    <input type="text" value="01/01/1990" class="form-input" />
+                    <span class="input-icon">calendar_today</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <div class="input-wrapper">
+                    <input type="text" value="0912345678" class="form-input" />
+                    <span class="input-icon">phone</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <div class="input-wrapper">
+                    <input
+                        type="email"
+                        value="example@email.com"
+                        class="form-input"
+                    />
+                    <span class="input-icon">email</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Address</label>
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        value="123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh"
+                        class="form-input"
+                    />
+                    <span class="input-icon">home</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="insurance-section">
+        <h2 class="section-title">Medical Insurance</h2>
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label">Insurance Number</label>
+                <div class="input-wrapper">
+                    <input type="text" value="BH123456789" class="form-input" />
+                    <span class="input-icon">credit_card</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Expiration Date</label>
+                <div class="input-wrapper">
+                    <input type="text" value="31/12/2025" class="form-input" />
+                    <span class="input-icon">event</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Insurance Provider</label>
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        value="Bảo hiểm Y tế Việt Nam"
+                        class="form-input"
+                    />
+                    <span class="input-icon">business</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="documents-section">
+        <h2 class="section-title">Medical Documents</h2>
+        <p class="section-description">
+            Upload your medical documents, test results, or prescriptions
+        </p>
+
+        <div class="upload-grid">
+            <div class="upload-box">
+                <div class="upload-icon">cloud_upload</div>
+                <h3 class="upload-title">Upload Document</h3>
+                <p class="upload-description">
+                    Drag and drop files here or click to browse
+                </p>
+                <button class="upload-btn">Upload File</button>
+            </div>
+            <div class="upload-box">
+                <div class="upload-icon">photo_camera</div>
+                <h3 class="upload-title">Take Photo</h3>
+                <p class="upload-description">
+                    Use your camera to capture medical documents
+                </p>
+                <button class="upload-btn">Open Camera</button>
+            </div>
+        </div>
+
+        <div class="documents-list">
+            <h3 class="documents-title">Uploaded Documents</h3>
+            <div class="document-items">
+                <div class="document-item">
+                    <div class="document-icon">description</div>
+                    <div class="document-info">
+                        <div class="document-name">Blood Test Results.pdf</div>
+                        <div class="document-date">Uploaded on 15/05/2023</div>
+                    </div>
+                    <div class="document-actions">
+                        <span class="action-icon">visibility</span>
+                        <span class="action-icon">download</span>
+                        <span class="action-icon">delete</span>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <div class="document-icon">image</div>
+                    <div class="document-info">
+                        <div class="document-name">X-Ray Image.jpg</div>
+                        <div class="document-date">Uploaded on 03/04/2023</div>
+                    </div>
+                    <div class="document-actions">
+                        <span class="action-icon">visibility</span>
+                        <span class="action-icon">download</span>
+                        <span class="action-icon">delete</span>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <div class="document-icon">description</div>
+                    <div class="document-info">
+                        <div class="document-name">
+                            Medical Prescription.pdf
+                        </div>
+                        <div class="document-date">Uploaded on 22/03/2023</div>
+                    </div>
+                    <div class="document-actions">
+                        <span class="action-icon">visibility</span>
+                        <span class="action-icon">download</span>
+                        <span class="action-icon">delete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="professional-section">
+        <h2 class="section-title">Professional Information</h2>
+        <p class="section-description">For healthcare providers only</p>
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label">Specialization</label>
+                <div class="input-wrapper">
+                    <input type="text" value="Cardiology" class="form-input" />
+                    <span class="input-icon">local_hospital</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Medical License Number</label>
+                <div class="input-wrapper">
+                    <input type="text" value="ML987654321" class="form-input" />
+                    <span class="input-icon">card_membership</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Workplace</label>
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        value="Bệnh viện Đa khoa Trung ương"
+                        class="form-input"
+                    />
+                    <span class="input-icon">business</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Professional Bio</label>
+                <textarea class="form-textarea">
+Cardiologist with 10+ years of experience specializing in interventional cardiology and heart disease prevention.</textarea
+                >
+            </div>
+        </div>
+    </section>
+
+    <div class="form-actions">
+        <button class="btn-save">Save Changes</button>
+        <button class="btn-cancel">Cancel</button>
+    </div>
+</div>

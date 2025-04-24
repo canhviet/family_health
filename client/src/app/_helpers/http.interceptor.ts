@@ -9,12 +9,12 @@ import {
     HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 import { tap, catchError } from 'rxjs/operators';
+import { AuthService } from '../_services/auth.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
-    constructor(private cookieService: CookieService) {}
+    constructor(private authService: AuthService) { }
 
     intercept(
         req: HttpRequest<any>,
@@ -22,15 +22,13 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
 
 
-        const cookie = this.cookieService.get('token');
-        const session = window.sessionStorage.getItem('token');
-        const authToken = cookie|| session;
+        const token = this.authService.getTokenData();
 
-        if (authToken) {
+        if (token) {
             req = req.clone({
                 withCredentials: true,
                 setHeaders: {
-                    Authorization: `Bearer ${authToken}`,
+                    Authorization: `Bearer ${token.accessToken}`,
                 },
             });
         } else {

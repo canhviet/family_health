@@ -1,5 +1,6 @@
 package sgu.j2ee.config;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.boot.CommandLineRunner;
@@ -29,25 +30,55 @@ public class DataInitializer implements CommandLineRunner{
     public void run(String... args) throws Exception {
         if(userRepository.count() == 0 && permissionRepository.count() == 0 && roleRepository.count() == 0) {
             Set<Permission> permissions = Set.of(
-                Permission.builder().permissionName("CREATE_USER").build(), 
-                Permission.builder().permissionName("UPDATE_USER").build(),
-                Permission.builder().permissionName("DELETE_USER").build(),
-                Permission.builder().permissionName("READ_USER").build()
+                Permission.builder().permissionName("FULL_ACCESS").build(), 
+                Permission.builder().permissionName("VIEW").build(),
+                Permission.builder().permissionName("ADD").build(),
+                Permission.builder().permissionName("UPDATE").build(),
+                Permission.builder().permissionName("DELETE").build(),
+                Permission.builder().permissionName("UPLOAD").build()
             );
 
             permissionRepository.saveAll(permissions);
 
-            Role role = Role.builder().roleName("ADMIN").permissions(permissions).build();
+            Set<Permission> fullPermission = new HashSet<>();
+            fullPermission.add(permissionRepository.findByPermissionName("FULL_ACCESS"));
 
-            roleRepository.save(role);
+            Role roleAdmin = Role.builder().roleName("ADMIN").permissions(fullPermission).build();
+
+            Role roleDoctor = Role.builder().roleName("DOCTOR").permissions(fullPermission).build();
+
+            Set<Permission> patientPermission = new HashSet<>();
+            patientPermission.add(permissionRepository.findByPermissionName("VIEW"));
+
+            Role rolePatient = Role.builder().roleName("PATIENT").permissions(patientPermission).build();
+
+            roleRepository.save(roleAdmin);
+            roleRepository.save(roleDoctor);
+            roleRepository.save(rolePatient);
 
             User adminUser = User.builder()
                 .username("admin")
                 .password(passwordEncoder.encode("admin123")) 
-                .role(role)
+                .role(roleAdmin)
                 .build();
 
             userRepository.save(adminUser);
+
+            User doctorUser = User.builder()
+                .username("DrThanh")
+                .password(passwordEncoder.encode("drthanh"))
+                .role(roleDoctor)
+                .build();
+
+            userRepository.save(doctorUser);
+
+            User patientUser = User.builder()
+                .username("patient1")
+                .password(passwordEncoder.encode("patient1"))
+                .role(rolePatient)
+                .build();
+
+            userRepository.save(patientUser);
 
         }
     }

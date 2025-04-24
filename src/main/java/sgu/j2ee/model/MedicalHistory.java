@@ -17,9 +17,13 @@ public class MedicalHistory {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "doctor_user_id", nullable = false)
+    private User doctor;
+
     private String condition;
     private LocalDate diagnosisDate;
     private String treatingDoctor;
     private String notes;
-    private LocalDate revisitDate; // message if nearly
+    private LocalDate revisitDate; 
 }
