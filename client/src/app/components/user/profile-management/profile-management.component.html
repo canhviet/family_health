@@ -2,6 +2,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
 />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="profile-container">
     <div class="breadcrumb">
         <div class="breadcrumb-item">
@@ -20,82 +21,86 @@
     <p class="page-description">
         Update your personal information and medical documents
     </p>
-
     <nav class="tab-navigation">
-        <div class="tab-item">Personal Information</div>
-        <div class="tab-item">Medical Insurance</div>
-        <div class="tab-item">Documents</div>
-        <div class="tab-item">Professional Info</div>
+        <div class="tab-item" (click)="scrollToSection('personal-info')">Personal Information</div>
+        <div class="tab-item" (click)="scrollToSection('medical-insurance')">Medical Insurance</div>
+        <div class="tab-item" (click)="scrollToSection('documents')">Documents</div>
+        <div class="tab-item" (click)="scrollToSection('professional-info')">Professional Info</div>
     </nav>
 
     <section class="personal-info-section">
-        <h2 class="section-title">Personal Information</h2>
-        <div class="form-grid">
-            <div class="form-group">
-                <label class="form-label">Full Name</label>
-                <div class="input-wrapper">
-                    <input
-                        type="text"
-                        value="Nguyễn Văn A"
-                        class="form-input"
-                    />
-                    <span class="input-icon">person</span>
+        <div id="personal-info" style="margin-top: 100px;">
+            <h2>Personal Information</h2>
+            <p>Details about personal information...</p>
+            <div class="form-grid">
+                <div class="form-group" style="position: relative; flex: 1;">
+                    <label class="form-label">Full Name</label>
+                    <div class="input-wrapper">
+                        <input
+                            type="text"
+                            value="Nguyễn Văn A"
+                            class="form-input"
+                        />
+                        <div class="fa-solid fa-user"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Date of Birth</label>
-                <div class="input-wrapper">
-                    <input type="text" value="01/01/1990" class="form-input" />
-                    <span class="input-icon">calendar_today</span>
+                <div class="form-group">
+                    <label class="form-label">Date of Birth</label>
+                    <div class="input-wrapper">
+                        <input type="text" value="01/01/1990" class="form-input" />
+                        <div class="fa-solid fa-calendar"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Phone Number</label>
-                <div class="input-wrapper">
-                    <input type="text" value="0912345678" class="form-input" />
-                    <span class="input-icon">phone</span>
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <div class="input-wrapper">
+                        <input type="text" value="0912345678" class="form-input" />
+                        <div class="fa-solid fa-phone"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Email</label>
-                <div class="input-wrapper">
-                    <input
-                        type="email"
-                        value="example@email.com"
-                        class="form-input"
-                    />
-                    <span class="input-icon">email</span>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <div class="input-wrapper">
+                        <input
+                            type="email"
+                            value="example@email.com"
+                            class="form-input"
+                        />
+                        <div class="fa-solid fa-inbox"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Address</label>
-                <div class="input-wrapper">
-                    <input
-                        type="text"
-                        value="123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh"
-                        class="form-input"
-                    />
-                    <span class="input-icon">home</span>
+                <div class="form-group">
+                    <label class="form-label">Address</label>
+                    <div class="input-wrapper">
+                        <input
+                            type="text"
+                            value="123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh"
+                            class="form-input"
+                        />
+                        <div class="fa-solid fa-house"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="insurance-section">
-        <h2 class="section-title">Medical Insurance</h2>
+        <div id="medical-insurance" style="margin-top: 100px;">
+            <h2 class="section-title">Medical Insurance</h2>
+        </div>
         <div class="form-grid">
             <div class="form-group">
                 <label class="form-label">Insurance Number</label>
                 <div class="input-wrapper">
                     <input type="text" value="BH123456789" class="form-input" />
-                    <span class="input-icon">credit_card</span>
+                    <div class="fa-solid fa-credit-card"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="form-label">Expiration Date</label>
                 <div class="input-wrapper">
                     <input type="text" value="31/12/2025" class="form-input" />
-                    <span class="input-icon">event</span>
+                    <div class="fa-solid fa-calendar"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
                 </div>
             </div>
             <div class="form-group">
@@ -106,18 +111,19 @@
                         value="Bảo hiểm Y tế Việt Nam"
                         class="form-input"
                     />
-                    <span class="input-icon">business</span>
+                    <div class="fa-solid fa-business-time"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="documents-section">
-        <h2 class="section-title">Medical Documents</h2>
-        <p class="section-description">
-            Upload your medical documents, test results, or prescriptions
-        </p>
-
+        <div id="documents" style="margin-top: 100px;">
+            <h2 class="section-title">Medical Documents</h2>
+            <p class="section-description">
+                Upload your medical documents, test results, or prescriptions
+            </p>
+        </div>
         <div class="upload-grid">
             <div class="upload-box">
                 <div class="upload-icon">cloud_upload</div>
@@ -183,8 +189,10 @@
     </section>
 
     <section class="professional-section">
-        <h2 class="section-title">Professional Information</h2>
-        <p class="section-description">For healthcare providers only</p>
+        <div id="professional-info" style="margin-top: 100px;">
+            <h2 class="section-title">Professional Information</h2>
+            <p class="section-description">For healthcare providers only</p>
+        </div>
         <div class="form-grid">
             <div class="form-group">
                 <label class="form-label">Specialization</label>

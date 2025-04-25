@@ -266,3 +266,6 @@
 .professional-section {
     margin-bottom: 36px;
 }
+html {
+    scroll-behavior: smooth;
+}
