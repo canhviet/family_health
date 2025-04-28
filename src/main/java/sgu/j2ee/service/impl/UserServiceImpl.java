@@ -15,7 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import sgu.j2ee.dto.request.UserRequest;
 import sgu.j2ee.dto.response.PageResponse;
 import sgu.j2ee.dto.response.ResponseData;
+import sgu.j2ee.dto.response.ResponseError;
 import sgu.j2ee.dto.response.UserResponse;
+import sgu.j2ee.exception.ResourceNotFoundException;
 import sgu.j2ee.model.Role;
 import sgu.j2ee.model.User;
 import sgu.j2ee.repository.RoleRepository;
@@ -34,6 +36,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email not found"));
+    }
+
+    @Override
+    public Long saveUser(User user) {
+        userRepository.save(user);
+        return user.getUserId();
     }
 
     @Override
@@ -76,6 +89,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long saveUser(UserRequest request) {
+        if(userRepository.existsByUsername(request.getUsername())) {
+            throw new RuntimeException("username is existed!");
+        }
+
         User user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -83,13 +100,21 @@ public class UserServiceImpl implements UserService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
         
-        String defaultRoleName = "ROLE_USER"; 
-        Role role = roleRepository.findByRoleName(defaultRoleName)
-                .orElseThrow(() -> new RuntimeException("Vai trò " + defaultRoleName + " không tồn tại"));
+        Role rolePatient = roleRepository.findByRoleName("PATIENT")
+                .orElseThrow(() -> new RuntimeException("role name PATIENT not found"));
         
+        Role roleDoctor = roleRepository.findByRoleName("DOCTOR")
+                .orElseThrow(() -> new RuntimeException("role name DOCTOR not found"));
         
-        user.setRole(role);
+        if ("patient".equals(request.getRole())) {
+            user.setRole(rolePatient);
+        }
         
+        if ("doctor".equals(request.getRole())) {
+            user.setRole(roleDoctor);
+        }
+                
+
         userRepository.save(user);
         log.info("User has added successfully, userId={}", user.getUserId());
 

@@ -7,5 +7,5 @@ import sgu.j2ee.model.Prescriptions;
 
 @Repository
 public interface PrescriptionRepository extends JpaRepository<Prescriptions, Long>{
-
+    
 }

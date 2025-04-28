@@ -15,7 +15,9 @@ const httpOptions = {
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private apiService: ApiService, private cookieService: CookieService) {}
+    constructor(private apiService: ApiService, private cookieService: CookieService) {
+        this.loadTokenFromCookie();
+    }
 
     private tokenData: TokenResponse | null = null;
 
@@ -35,17 +37,11 @@ export class AuthService {
     }
 
     register(
-        username: string,
-        email: string,
-        password: string
+        data: any
     ): Observable<any> {
         return this.apiService.post(
             AUTH_API + 'register',
-            {
-                username,
-                email,
-                password,
-            },
+            data,
             httpOptions
         );
     }
@@ -56,12 +52,6 @@ export class AuthService {
 
     forgotPassword(data: String): Observable<any> {
         return this.apiService.post(AUTH_API + 'forgot-password', data, {
-            responseType: 'text' as 'json',
-        });
-    }
-
-    resetPassword(data: String): Observable<any> {
-        return this.apiService.post(AUTH_API + 'reset-password', data, {
             responseType: 'text' as 'json',
         });
     }
@@ -83,6 +73,13 @@ export class AuthService {
 
     removeToken() {
         this.cookieService.delete('token');
+    }
+
+    private loadTokenFromCookie() {
+        const token = this.cookieService.get('token');
+        if (token) {
+            this.tokenData = JSON.parse(token);
+        }
     }
 }
 

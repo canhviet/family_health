@@ -52,9 +52,9 @@ public class PreFilter extends OncePerRequestFilter {
         log.info("Token: {}", token);
 
         final String userName = jwtService.extractUsername(token, ACCESS_TOKEN);
-        List<String> roles = jwtService.extractRoles(token, ACCESS_TOKEN);
-        List<SimpleGrantedAuthority> authorities = roles.stream().map(SimpleGrantedAuthority::new).toList();
-        log.info("roles: {}", authorities);
+        List<String> permissions = jwtService.extractPermissions(token, ACCESS_TOKEN);
+        List<SimpleGrantedAuthority> authorities = permissions.stream().map(SimpleGrantedAuthority::new).toList();
+        log.info("permissions: {}", authorities);
 
         if (StringUtils.isNotEmpty(userName) && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userName);

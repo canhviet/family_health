@@ -46,12 +46,4 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/")
-    public ResponseData<Long> addUser(@Valid @RequestBody UserRequest request) {
-        log.info("Request add user, {} {}", request.getFirstName(), request.getLastName());
-        Long userId = userService.saveUser(request);
-        return new ResponseData<>(HttpStatus.CREATED.value(), "user.add.success", userId);
-    }
-
-
 }

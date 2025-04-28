@@ -1,3 +1,47 @@
 <div mat-dialog-content>
-    
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>allergen</mat-label>
+            <input
+                matInput
+                type="text"
+                [(ngModel)]="record.allergen"
+                name="allergen"
+            />
+        </mat-form-field>
+    </div>
+
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>reaction</mat-label>
+            <input
+                matInput
+                type="text"
+                [(ngModel)]="record.reaction"
+                name="reaction"
+            />
+        </mat-form-field>
+    </div>
+
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>severity</mat-label>
+            <input
+                matInput
+                type="text"
+                [(ngModel)]="record.severity"
+                name="severity"
+            />
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <div class="button-group">
+        <button (click)="onSubmit()" class="btn btn-outline-primary m-3" type="button">
+            Save
+        </button>
+        <button (click)="onClose()" class="btn btn-outline-danger m-3" type="button">
+            Close
+        </button>
+    </div>
 </div>

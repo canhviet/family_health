@@ -1,16 +1,19 @@
 package sgu.j2ee.dto.request;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Getter
-public class MedicationRequest {
+import lombok.Data;
+
+@Data
+public class MedicationRequest implements Serializable{
     String dosage;
     String frequency;
     String instructions;
     String medicationName;
     String quantity;
-    Date starDate;
+    Date startDate;
     Date endDate;
 }

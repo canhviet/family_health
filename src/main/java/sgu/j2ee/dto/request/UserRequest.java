@@ -19,4 +19,5 @@ public class UserRequest implements Serializable{
     @NotNull(message = "last name must be not null")
     String lastName;
 
+    String role;
 }

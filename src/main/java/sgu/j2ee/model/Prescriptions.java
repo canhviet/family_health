@@ -1,14 +1,16 @@
 package sgu.j2ee.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "prescriptions")
 @Data
+@Builder
 public class Prescriptions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class Prescriptions {
     @JoinColumn(name = "doctor_user_id")
     private User doctor; 
 
-    private LocalDate prescriptionDate;
+    private Date prescriptionDate;
     private String notes;
 
     @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
