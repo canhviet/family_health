@@ -17,6 +17,6 @@ public interface JwtService {
 
     boolean isValid(String token, TokenType type, UserDetails user);
 
-    List<String> extractRoles(String token, TokenType tokenType);
+    List<String> extractPermissions(String token, TokenType tokenType);
     
 }

@@ -65,8 +65,8 @@ public class JwtServiceImpl implements JwtService{
         return extractClaim(token, type, Claims::getSubject);
     }
 
-    public List<String> extractRoles(String token, TokenType type) {
-        return extractClaim(token, type, claims -> claims.get("roles", List.class));
+    public List<String> extractPermissions(String token, TokenType type) {
+        return extractClaim(token, type, claims -> claims.get("permissions", List.class));
     }
 
 
@@ -82,11 +82,11 @@ public class JwtServiceImpl implements JwtService{
 
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
 
-        List<String> roles = authorities.stream()
+        List<String> permissions = authorities.stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        claims.put("roles", roles);
+        claims.put("permissions", permissions);
         claims.put("username", userDetails.getUsername());
 
         return Jwts.builder()
@@ -103,11 +103,11 @@ public class JwtServiceImpl implements JwtService{
 
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
 
-        List<String> roles = authorities.stream()
+        List<String> permissions = authorities.stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        claims.put("roles", roles);
+        claims.put("permissions", permissions);
         claims.put("username", userDetails.getUsername());
         return Jwts.builder()
                 .setClaims(claims)
@@ -123,11 +123,11 @@ public class JwtServiceImpl implements JwtService{
 
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
 
-        List<String> roles = authorities.stream()
+        List<String> permissions = authorities.stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        claims.put("roles", roles);
+        claims.put("permissions", permissions);
         claims.put("username", userDetails.getUsername());
         return Jwts.builder()
                 .setClaims(claims)

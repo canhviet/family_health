@@ -43,7 +43,7 @@ export interface SignInRequest {
 }
 
 export interface JwtPayload {
-    roles: string[];
+    permissions: string[];
     username: string;
     sub: string;
     iat: number;
