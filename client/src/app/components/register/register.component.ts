@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
-import { Role, User } from '../../../../types';
+import { Register } from '../../../../types';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -8,58 +10,32 @@ import { Role, User } from '../../../../types';
     styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-    user: User = {
+        ;
+
+    constructor(private authService: AuthService,
+        private toastr: ToastrService,
+        private router: Router
+    ) { }
+
+    showPassword: boolean = false;
+
+    togglePassword(): void {
+        this.showPassword = !this.showPassword;
+    }
+
+    user: Register = {
         username: '',
-        passwordHash: '',
-        email: '',
-        role: { roleName: '' },
+        password: '',
         firstName: '',
         lastName: '',
-        dob: '',
-        gender: '',
-        relationshipToHead: '',
-        healthInsuranceCode: '',
-        familyId: 0,
-        address: '',
-        phone: '',
-        cityzenId: ''
-    };
-
-    roles: Role[] = [
-        { roleName: 'doctor' },
-        { roleName: 'user' }
-    ];
-
-    constructor(private authService: AuthService) { }
+        role: ''
+    }
 
     onSubmit(): void {
-        // this.authService.register(this.user).subscribe(
-        //   response => {
-        //     console.log('Registration successful', response);
-        //     this.resetForm();
-        //   },
-        //   error => {
-        //     console.error('Registration failed', error);
-        //   }
-        // );
+        this.authService.register(this.user).subscribe(() => {
+            this.toastr.success("Register Successfully!")
+            this.router.navigate(['']);
+        });
     }
 
-    resetForm(): void {
-        this.user = {
-            username: '',
-            passwordHash: '',
-            email: '',
-            role: { roleName: '' },
-            firstName: '',
-            lastName: '',
-            dob: '',
-            gender: '',
-            relationshipToHead: '',
-            healthInsuranceCode: '',
-            familyId: 0,
-            address: '',
-            phone: '',
-            cityzenId: ''
-        };
-    }
 }

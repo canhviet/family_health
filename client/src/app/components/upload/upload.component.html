@@ -1,0 +1,36 @@
+<mat-card class="upload-card">
+    <mat-card-header>
+        <mat-card-title>Upload File</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*,.pdf"
+            class="file-input"
+        />
+        <div *ngIf="previewUrl" class="preview-container">
+            <img [src]="previewUrl" alt="Preview" class="preview-image" />
+        </div>
+        <div *ngIf="!previewUrl && selectedFile" class="file-info">
+            <p>File: {{ selectedFile.name }}</p>
+            <p>Size: {{ selectedFile.size / 1024 | number : "1.2-2" }} KB</p>
+        </div>
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="cancel()" [disabled]="uploading">
+            Cancel
+        </button>
+        <button
+            mat-raised-button
+            color="primary"
+            (click)="uploadFile()"
+            [disabled]="!selectedFile || uploading"
+        >
+            {{ uploading ? "Uploading..." : "Upload" }}
+        </button>
+    </mat-card-actions>
+</mat-card>

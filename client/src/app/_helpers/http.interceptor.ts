@@ -10,17 +10,17 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../_services/auth.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthService) { }
+    constructor(private toastr: ToastrService, private authService: AuthService) { }
 
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-
 
         const token = this.authService.getTokenData();
 
@@ -41,42 +41,45 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             tap((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    console.log(
-                        `Request to ${req.url} succeeded with status: ${event.status}`
-                    );
+                    // this.toastr.success(
+                    //     event.statusText || 'Success',
+                    //     `Request Successful - ${event.status}`
+                    // );
                 }
             }),
             catchError((error: HttpErrorResponse) => {
                 const status = error.status;
-                console.error(
-                    `Request to ${req.url} failed with status: ${status}`
-                );
 
                 switch (status) {
                     case 403:
-                        console.error(
-                            '403 Forbidden: Access denied. Check token or permissions.'
+                        this.toastr.error(
+                            'Access denied. Check your permissions.',
+                            'Forbidden (403)'
                         );
-                        // Optional: Add custom logic, e.g., redirect to login
                         break;
                     case 404:
-                        console.error(
-                            '404 Not Found: The requested resource does not exist.'
+                        this.toastr.warning(
+                            'The requested resource was not found.',
+                            'Not Found (404)'
                         );
                         break;
                     case 401:
-                        console.error(
-                            '401 Unauthorized: Authentication required.'
+                        this.toastr.warning(
+                            'You are not authorized. Please log in.',
+                            'Unauthorized (401)'
                         );
-                        // Optional: Redirect to login or refresh token
                         break;
                     case 500:
-                        console.error(
-                            '500 Server Error: Something went wrong on the server.'
+                        this.toastr.error(
+                            'An internal server error occurred. Please try again later.',
+                            'Server Error (500)'
                         );
                         break;
                     default:
-                        console.error(`Unhandled status code: ${status}`);
+                        this.toastr.info(
+                            `An unexpected error occurred (${status}).`,
+                            'Error'
+                        );
                 }
 
                 return throwError(() => error);

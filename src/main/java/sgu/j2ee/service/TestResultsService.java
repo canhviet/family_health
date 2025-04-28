@@ -4,7 +4,6 @@ package sgu.j2ee.service;
 import sgu.j2ee.dto.request.TestResultsRequest;
 import sgu.j2ee.dto.response.PageResponse;
 import sgu.j2ee.dto.response.ResponseData;
-import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 

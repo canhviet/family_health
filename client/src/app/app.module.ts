@@ -29,6 +29,10 @@ import { MatInputModule } from '@angular/material/input';
 import { AddTestComponent } from './components/doctor/test-result/add-test/add-test.component';
 import { AddAllergyComponent } from './components/doctor/allergies/add-allergy/add-allergy.component';
 import { AddImmunizationComponent } from './components/doctor/immunization/add-immunization/add-immunization.component';
+import { UploadComponent } from './components/upload/upload.component';
+import { MatCardModule } from '@angular/material/card';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +53,10 @@ import { AddImmunizationComponent } from './components/doctor/immunization/add-i
         AddMedicalComponent,
         AddTestComponent,
         AddAllergyComponent,
-        AddImmunizationComponent
+        AddImmunizationComponent,
+        UploadComponent,
+        ForgotPasswordComponent,
+        ChangePasswordComponent
     ],
     imports: [
         BrowserModule,
@@ -65,7 +72,8 @@ import { AddImmunizationComponent } from './components/doctor/immunization/add-i
         }),
         MatDatepickerModule,
         MatInputModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatCardModule
     ],
     providers: [
         CookieService,

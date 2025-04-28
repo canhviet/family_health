@@ -24,15 +24,14 @@
                                 </div>
                             </div>
                         </div>
-                        <form (ngSubmit)="onSubmit()">
+                        <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
                             <div class="row gy-3 gy-md-4 overflow-hidden">
+                                <!-- First Name -->
                                 <div class="col-12">
-                                    <label for="firstName" class="form-label"
-                                        >First Name
-                                        <span class="text-danger"
-                                            >*</span
-                                        ></label
-                                    >
+                                    <label for="firstName" class="form-label">
+                                        First Name
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <input
                                         type="text"
                                         class="form-control"
@@ -41,15 +40,25 @@
                                         name="firstName"
                                         placeholder="First Name"
                                         required
+                                        #firstName="ngModel"
                                     />
-                                </div>
-                                <div class="col-12">
-                                    <label for="lastName" class="form-label"
-                                        >Last Name
-                                        <span class="text-danger"
-                                            >*</span
-                                        ></label
+                                    <div
+                                        class="text-danger"
+                                        *ngIf="
+                                            firstName.touched &&
+                                            firstName.invalid
+                                        "
                                     >
+                                        First name is required.
+                                    </div>
+                                </div>
+
+                                <!-- Last Name -->
+                                <div class="col-12">
+                                    <label for="lastName" class="form-label">
+                                        Last Name
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <input
                                         type="text"
                                         class="form-control"
@@ -58,15 +67,24 @@
                                         name="lastName"
                                         placeholder="Last Name"
                                         required
+                                        #lastName="ngModel"
                                     />
-                                </div>
-                                <div class="col-12">
-                                    <label for="username" class="form-label"
-                                        >Username
-                                        <span class="text-danger"
-                                            >*</span
-                                        ></label
+                                    <div
+                                        class="text-danger"
+                                        *ngIf="
+                                            lastName.touched && lastName.invalid
+                                        "
                                     >
+                                        Last name is required.
+                                    </div>
+                                </div>
+
+                                <!-- Username -->
+                                <div class="col-12">
+                                    <label for="username" class="form-label">
+                                        Username
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <input
                                         type="text"
                                         class="form-control"
@@ -75,37 +93,96 @@
                                         name="username"
                                         placeholder="Username"
                                         required
+                                        #username="ngModel"
                                     />
-                                </div>
-                                <div class="col-12">
-                                    <label for="password" class="form-label"
-                                        >Password
-                                        <span class="text-danger"
-                                            >*</span
-                                        ></label
+                                    <div
+                                        class="text-danger"
+                                        *ngIf="
+                                            username.touched && username.invalid
+                                        "
                                     >
-                                    <input
-                                        type="password"
-                                        class="form-control"
-                                        id="password"
-                                        [(ngModel)]="user.passwordHash"
-                                        name="password"
+                                        Username is required.
+                                    </div>
+                                </div>
+
+                                <!-- Password -->
+                                <!-- Password -->
+                                <div class="col-12">
+                                    <label for="password" class="form-label">
+                                        Password
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input
+                                            [type]="
+                                                showPassword
+                                                    ? 'text'
+                                                    : 'password'
+                                            "
+                                            class="form-control"
+                                            id="password"
+                                            [(ngModel)]="user.password"
+                                            name="password"
+                                            required
+                                            #password="ngModel"
+                                        />
+                                        <button
+                                            type="button"
+                                            class="btn btn-outline-secondary"
+                                            (click)="togglePassword()"
+                                            tabindex="-1"
+                                        >
+                                            <i
+                                                class="fa"
+                                                [ngClass]="
+                                                    showPassword
+                                                        ? 'fa-eye-slash'
+                                                        : 'fa-eye'
+                                                "
+                                            ></i>
+                                        </button>
+                                    </div>
+                                    <div
+                                        class="text-danger"
+                                        *ngIf="
+                                            password.touched && password.invalid
+                                        "
+                                    >
+                                        Password is required.
+                                    </div>
+                                </div>
+
+                                <!-- Role -->
+                                <div class="col-12">
+                                    <label for="role" class="form-label">
+                                        Role <span class="text-danger">*</span>
+                                    </label>
+                                    <select
+                                        id="role"
+                                        class="form-select"
+                                        [(ngModel)]="user.role"
+                                        name="role"
                                         required
-                                    />
-                                </div>
-                                <div class="col-12">
-                                    <label for="role" class="form-label"
-                                        >Role
-                                        <span class="text-danger"
-                                            >*</span
-                                        ></label
+                                        #role="ngModel"
                                     >
+                                        <option value="patient">Patient</option>
+                                        <option value="doctor">Doctor</option>
+                                    </select>
+                                    <div
+                                        class="text-danger"
+                                        *ngIf="role.touched && role.invalid"
+                                    >
+                                        Role is required.
+                                    </div>
                                 </div>
+
+                                <!-- Submit button -->
                                 <div class="col-12">
                                     <div class="d-grid">
                                         <button
                                             class="btn bsb-btn-xl btn-primary"
                                             type="submit"
+                                            [disabled]="form.invalid"
                                         >
                                             Sign up
                                         </button>
@@ -113,6 +190,7 @@
                                 </div>
                             </div>
                         </form>
+
                         <div class="row">
                             <div class="col-12">
                                 <hr class="mt-5 mb-4 border-secondary-subtle" />

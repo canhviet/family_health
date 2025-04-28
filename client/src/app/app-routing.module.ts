@@ -11,11 +11,21 @@ import { ProfileManagementComponent } from './components/user/profile-management
 import { MedicalRecordsComponent } from './components/user/medical-records/medical-records.component';
 import { HomeComponent } from './components/user/home/home.component';
 import { OverviewComponent } from './components/user/overview/overview.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
     {
         path: '',
         component: LoginComponent,
+    },
+    {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent
+    },
+    {
+        path: 'change-password',
+        component: ChangePasswordComponent
     },
     {
         path: 'login',

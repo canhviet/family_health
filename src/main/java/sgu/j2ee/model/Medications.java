@@ -1,13 +1,15 @@
 package sgu.j2ee.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbl_medications")
 @Data
+@Builder
 public class Medications {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +24,6 @@ public class Medications {
     private String frequency;
     private String quantity;
     private String instructions;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
 }

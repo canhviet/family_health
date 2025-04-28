@@ -51,7 +51,7 @@ export interface JwtPayload {
 }
 
 export interface User {
-    id?: number;
+    userId?: number;
     username: string;
     passwordHash: string;
     email: string;
@@ -80,7 +80,7 @@ export interface TokenResponse {
 }
 
 export interface Prescription {
-    id?: number;
+    prescriptionId?: number;
     notes: string;
     prescriptionDate: Date;
     doctorUserId: number;
@@ -89,7 +89,7 @@ export interface Prescription {
 }
 
 export interface Medication {
-    id?: number;
+    medicationId?: number;
     dosage: string;
     endDate: Date;
     frequency: string;
@@ -100,7 +100,7 @@ export interface Medication {
 }
 
 export interface TestResults {
-    id?: number;
+    testId?: number;
     datePerfomed: Date;
     labName: string;
     result: string;
@@ -109,7 +109,7 @@ export interface TestResults {
 }
 
 export interface Immunization {
-    id?: number;
+    immunizationId?: number;
     dateAdministered: Date;
     provider: string;
     vaccineName: string;
@@ -117,7 +117,7 @@ export interface Immunization {
 }
 
 export interface Allergy {
-    id?: number;
+    AlleryId?: number;
     allergen: string;
     reaction: string;
     severity: string;
@@ -125,12 +125,12 @@ export interface Allergy {
 }
 
 export interface Family {
-    id?: number;
+    familyId?: number;
     headOfHouseHoldId: number;
 }
 
 export interface Document {
-    id?: number;
+    documentId?: number;
     documentName: string;
     documentUrl: string;
     uploadDate: Date;
@@ -146,7 +146,7 @@ export interface DataResponse {
 }
 
 export interface MedicalHisory {
-    id?: number;
+    historyId?: number;
     condition: string;
     diagnosisDate: Date;
     notes: string;
@@ -154,4 +154,18 @@ export interface MedicalHisory {
     treatingDoctor: string;
     userId: number;
     doctorUserId: number;
+}
+
+export interface ResetPassword {
+    password: String;
+    confirmPassword: String;
+    secretKey: String;
+}
+
+export interface Register {
+    username: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    role: string;
 }

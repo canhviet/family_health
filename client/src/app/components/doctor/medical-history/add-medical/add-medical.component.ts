@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MedicalHisory, Medication, Prescription } from '../../../../../../types';
+import { PrescriptionService } from '../../../../_services/prescription.service';
+import { UploadComponent } from '../../../upload/upload.component';
 
 @Component({
     selector: 'app-add-medical',
@@ -9,8 +11,11 @@ import { MedicalHisory, Medication, Prescription } from '../../../../../../types
 })
 export class AddMedicalComponent {
     constructor(public dialogRef: MatDialogRef<AddMedicalComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) { }
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private prescriptionService: PrescriptionService,
+        private dialog: MatDialog) { }
 
+    uploadedUrl: string | null = null;
 
     record: MedicalHisory = {
         condition: '',
@@ -24,16 +29,16 @@ export class AddMedicalComponent {
 
     prescription: Prescription = {
         notes: '',
-        prescriptionDate: new Date,
-        doctorUserId: 0,
-        userId: 0,
+        prescriptionDate: new Date(),
+        doctorUserId: Number(2),
+        userId: Number(3),
         medications: []
     }
 
 
     onSubmit() {
-        console.log(this.record);
         console.log(this.prescription);
+        this.prescriptionService.add(this.prescription).subscribe((data) => { console.log(data) });
     }
 
     onClose(): void {
@@ -52,5 +57,17 @@ export class AddMedicalComponent {
         }
 
         this.prescription.medications.push(newMedication);
+    }
+
+    onUpload(): void {
+        const dialogRef = this.dialog.open(UploadComponent, {
+            width: '500px'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result && result.url) {
+                this.uploadedUrl = result.url;
+            }
+        });
     }
 }

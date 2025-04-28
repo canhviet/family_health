@@ -19,6 +19,9 @@ export class LoginComponent {
         private toastr: ToastrService
     ) { }
 
+    showPassword: boolean = false;
+
+
     signInRequest: SignInRequest = {
         username: '',
         password: '',
@@ -62,6 +65,10 @@ export class LoginComponent {
     }
 
     redirectRegister() {
-        this.router.navigate(['register']);
+        this.router.navigate(['sign_up']);
+    }
+
+    redirectForgot() {
+        this.router.navigate(['forgot-password']);
     }
 }

@@ -17,4 +17,6 @@ public interface UserService {
     UserResponse getUser(Long userId);
     void deleteUser(Long userId);
     UserDetailsService userDetailsService();
+    User getUserByEmail(String email);
+    Long saveUser(User user);
 }

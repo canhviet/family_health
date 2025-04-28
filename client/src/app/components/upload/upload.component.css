@@ -1,0 +1,27 @@
+.upload-card {
+    max-width: 400px;
+    margin: 20px;
+}
+
+.file-input {
+    margin: 20px 0;
+}
+
+.preview-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 200px;
+}
+
+.file-info {
+    margin: 20px 0;
+}
+
+.error-message {
+    color: red;
+    margin: 10px 0;
+}
