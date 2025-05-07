@@ -13,6 +13,8 @@ import { HomeComponent } from './components/user/home/home.component';
 import { OverviewComponent } from './components/user/overview/overview.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { FamilyComponent } from './components/user/family/family.component';
+import { ConnectComponent } from './components/user/connect/connect.component';
 
 const routes: Routes = [
     {
@@ -51,10 +53,18 @@ const routes: Routes = [
                 path: 'medical-record',
                 component: MedicalRecordsComponent
             },
+            {
+                path: 'family',
+                component: FamilyComponent
+            },
+            {
+                path: 'connect',
+                component: ConnectComponent
+            }
         ]
     },
     {
-        path: 'import',
+        path: 'doctor',
         component: LayoutComponent,
         children: [
             {

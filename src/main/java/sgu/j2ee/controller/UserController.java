@@ -1,49 +1,14 @@
 package sgu.j2ee.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import sgu.j2ee.dto.request.UserRequest;
-import sgu.j2ee.dto.response.PageResponse;
-import sgu.j2ee.dto.response.ResponseData;
-import sgu.j2ee.dto.response.ResponseError;
-import sgu.j2ee.service.UserService;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
-    private final UserService userService;
-
-    @GetMapping("/all")
-    private ResponseData<?> allUsers() {
-        try {
-            return userService.all_users();
-        } catch (Exception e) {
-            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "list users fail");
-        }
-    }
-
-    @GetMapping("/list")
-    public ResponseData<?> getAllUsers(@RequestParam(defaultValue = "0", required = false) int pageNo,
-                                                         @Min(10) @RequestParam(defaultValue = "20", required = false) int pageSize) {
-        try {
-            PageResponse<?> users = userService.getAllUser(pageNo, pageSize);
-            return new ResponseData<>(HttpStatus.OK.value(), "users", users);
-        } catch (Exception e) {
-            log.error("errorMessage={}", e.getMessage(), e.getCause());
-            return new ResponseError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
-        }
-    }
-
 }

@@ -1,0 +1,13 @@
+<div class="search-container">
+    <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+        class="search-input"
+    />
+    <div *ngIf="filteredItems.length > 0" class="suggestions">
+        <div *ngFor="let item of filteredItems" class="suggestion-item">
+            {{ item }}
+        </div>
+    </div>
+</div>

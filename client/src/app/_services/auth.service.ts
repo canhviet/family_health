@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { TokenResponse } from '../../../types';
+import { JwtPayload, TokenResponse } from '../../../types';
 import { CookieService } from 'ngx-cookie-service';
+import { jwtDecode } from 'jwt-decode';
 
 const AUTH_API = 'http://localhost:8083/auth/';
 
@@ -79,6 +80,22 @@ export class AuthService {
         const token = this.cookieService.get('token');
         if (token) {
             this.tokenData = JSON.parse(token);
+        }
+    }
+
+    isTokenExpired(): boolean {
+        const tokenData = this.getTokenData();
+        if (!tokenData) {
+            return true; // Không có token -> coi như hết hạn
+        }
+
+        try {
+            const decoded = jwtDecode<JwtPayload>(tokenData.accessToken);
+            const currentTime = Math.floor(Date.now() / 1000);
+            return currentTime >= decoded.exp;
+        } catch (error) {
+            console.error('Invalid token:', error);
+            return true;
         }
     }
 }

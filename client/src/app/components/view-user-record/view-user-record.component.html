@@ -1,0 +1,25 @@
+<div mat-dialog-content>
+    <mat-tab-group
+        [selectedIndex]="selectedTabIndex"
+        (selectedTabChange)="onTabChange($event.index)"
+    >
+        <mat-tab label="Tab 1">
+            <div class="tab-content">
+                <h2>Content of Tab 1</h2>
+                <p>This is the content for the first tab.</p>
+            </div>
+        </mat-tab>
+        <mat-tab label="Tab 2">
+            <div class="tab-content">
+                <h2>Content of Tab 2</h2>
+                <p>This is the content for the second tab.</p>
+            </div>
+        </mat-tab>
+        <mat-tab label="Tab 3">
+            <div class="tab-content">
+                <h2>Content of Tab 3</h2>
+                <p>This is the content for the third tab.</p>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -2,26 +2,21 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../_services/auth.service';
 import { jwtDecode } from 'jwt-decode';
 import { JwtPayload } from '../../../../../types';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewUserRecordComponent } from '../../view-user-record/view-user-record.component';
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrl: './overview.component.css'
+    selector: 'app-overview',
+    templateUrl: './overview.component.html',
+    styleUrl: './overview.component.css'
 })
 export class OverviewComponent {
 
-    constructor(private authService: AuthService){}
+    constructor(private authService: AuthService, public dialog: MatDialog) { }
 
-    viewDoctorApp: boolean = false;
-
-    ngOnInit() {
-        const token = this.authService.getTokenData();
-
-        if (token) {
-            const decoded = jwtDecode<JwtPayload>(token.accessToken);
-            console.log(decoded.permissions);
-            if(decoded.permissions.includes('FULL_ACCESS') || decoded.permissions.includes('DOCTOR')) {
-                this.viewDoctorApp = true;
-            }
-        }
+    openUserRecord() {
+        this.dialog.open(ViewUserRecordComponent, {
+            width: '90vw',
+            height: 'auto',
+        });
     }
 }

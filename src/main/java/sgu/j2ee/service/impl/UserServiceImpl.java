@@ -1,10 +1,5 @@
 package sgu.j2ee.service.impl;
 
-import java.util.List;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,9 +8,6 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import sgu.j2ee.dto.request.UserRequest;
-import sgu.j2ee.dto.response.PageResponse;
-import sgu.j2ee.dto.response.ResponseData;
-import sgu.j2ee.dto.response.ResponseError;
 import sgu.j2ee.dto.response.UserResponse;
 import sgu.j2ee.exception.ResourceNotFoundException;
 import sgu.j2ee.model.Role;
@@ -47,39 +39,6 @@ public class UserServiceImpl implements UserService {
     public Long saveUser(User user) {
         userRepository.save(user);
         return user.getUserId();
-    }
-
-    @Override
-    public ResponseData<?> all_users() {
-        List<User> users = userRepository.findAll();
-        List<UserResponse> list = users.stream().map(user -> UserResponse.builder()
-        .id(user.getUserId())
-        .username(user.getUsername())
-        .first_name(user.getFirstName())
-        .last_name(user.getLastName())
-        .build()).toList();
-
-        return new ResponseData<>(HttpStatus.OK.value(), "get all users", list);
-    }
-
-    @Override
-    public PageResponse<?> getAllUser(int pageNo, int pageSize) {
-        Page<User> page = userRepository.findAll(PageRequest.of(pageNo, pageSize));
-
-        List<UserResponse> list = page.stream().map(user -> UserResponse.builder()
-                .id(user.getUserId())
-                .username(user.getUsername())
-                .first_name(user.getFirstName())
-                .last_name(user.getLastName())
-                .build())
-                .toList();
-
-        return PageResponse.builder()
-                .pageNo(pageNo)
-                .pageSize(pageSize)
-                .totalPage(page.getTotalPages())
-                .items(list)
-                .build();
     }
 
     @Override
@@ -123,16 +82,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(Long userId, UserRequest request) {
+        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
     }
 
     @Override
     public UserResponse getUser(Long userId) {
+        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getUser'");
     }
 
     @Override
     public void deleteUser(Long userId) {
+        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
     }
 

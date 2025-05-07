@@ -31,8 +31,13 @@ import { AddAllergyComponent } from './components/doctor/allergies/add-allergy/a
 import { AddImmunizationComponent } from './components/doctor/immunization/add-immunization/add-immunization.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ViewUserRecordComponent } from './components/view-user-record/view-user-record.component';
+import { NavComponent } from './components/nav/nav.component';
+import { FamilyComponent } from './components/user/family/family.component';
+import { ConnectComponent } from './components/user/connect/connect.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +61,11 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
         AddImmunizationComponent,
         UploadComponent,
         ForgotPasswordComponent,
-        ChangePasswordComponent
+        ChangePasswordComponent,
+        ViewUserRecordComponent,
+        NavComponent,
+        FamilyComponent,
+        ConnectComponent,
     ],
     imports: [
         BrowserModule,
@@ -73,7 +82,9 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
         MatDatepickerModule,
         MatInputModule,
         MatNativeDateModule,
-        MatCardModule
+        MatCardModule,
+        MatTabsModule,
+
     ],
     providers: [
         CookieService,

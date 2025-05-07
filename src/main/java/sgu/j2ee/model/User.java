@@ -1,7 +1,8 @@
 package sgu.j2ee.model;
 
-import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -42,7 +43,7 @@ public class User implements UserDetails {
 
     private String firstName;
     private String lastName;
-    private LocalDate dob; 
+    private Date dob; 
     private String gender;
     private String phone;
     private String address;
@@ -56,5 +57,11 @@ public class User implements UserDetails {
                 .map(permission -> (GrantedAuthority) permission::getPermissionName)
                 .collect(Collectors.toList());
     }
+
+    @OneToMany(mappedBy = "user")
+    private List<MedicalConnections> connections;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<MedicalConnections> doctorConnections;
 
 }
