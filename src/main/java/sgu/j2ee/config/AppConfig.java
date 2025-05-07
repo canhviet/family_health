@@ -22,7 +22,7 @@ import sgu.j2ee.service.UserService;
 @RequiredArgsConstructor
 public class AppConfig {
     private String[] WHITE_LIST = {
-            "/",
+         "/",
         "/auth/**",
         "/swagger-ui/**",
         "/swagger-ui.html",
@@ -30,7 +30,6 @@ public class AppConfig {
         "/swagger-resources/**",
         "/webjars/**",
         "/api/upload"
-        
     };
 
     private final UserService userService;
