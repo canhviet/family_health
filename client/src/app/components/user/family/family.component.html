@@ -1,0 +1,38 @@
+<div class="search-container">
+    <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+        class="search-input"
+    />
+    <div *ngIf="filteredItems.length > 0" class="suggestions">
+        <div *ngFor="let item of filteredItems" class="suggestion-item">
+            {{ item.firstName }} {{item.lastName}}
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div
+            class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4"
+            *ngFor="let u of users"
+        >
+            <div class="card" style="width: 100%">
+                <img
+                    src="../../../../assets/images/Avatar-PNG-Image.png"
+                    class="card-img-top rounded-circle"
+                />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ u.firstName }} {{ u.lastName }}
+                    </h5>
+                    <p class="card-text">
+                        {{ u.relationshipToHead }}
+                    </p>
+                    <a href="#" class="btn btn-primary">View Records</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

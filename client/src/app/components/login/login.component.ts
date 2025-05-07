@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { JwtPayload, SignInRequest, TokenResponse } from '../../../../types';
+import { SignInRequest, TokenResponse } from '../../../../types';
 import { AuthService } from '../../_services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { jwtDecode } from 'jwt-decode';
+
 
 @Component({
     selector: 'app-login',
@@ -27,19 +27,11 @@ export class LoginComponent {
     };
 
     ngOnInit() {
-        const token = this.authService.getTokenData();
-
-        if (token) {
-            const decoded = jwtDecode<JwtPayload>(token.accessToken);
-
-            const currentTime = Math.floor(Date.now() / 1000);
-
-            if (decoded.exp < currentTime) {
-                this.authService.removeToken();
-                this.router.navigate(['']);
-            } else {
-                this.router.navigate(['home']);
-            }
+        if (this.authService.isTokenExpired()) {
+            this.authService.removeToken();
+            this.router.navigate(['']);
+        } else {
+            this.router.navigate(['home']);
         }
     }
 

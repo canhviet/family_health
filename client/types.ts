@@ -126,7 +126,13 @@ export interface Allergy {
 
 export interface Family {
     familyId?: number;
-    headOfHouseHoldId: number;
+    headId: number;
+}
+
+export interface AddNewMember {
+    relationship: string;
+    headId: number;
+    userId: number;
 }
 
 export interface Document {
@@ -168,4 +174,26 @@ export interface Register {
     firstName: string;
     lastName: string;
     role: string;
+}
+
+export interface UserInFamily {
+    relationshipToHead: string;
+    userId: number;
+    firstName: string;
+    lastName: string;
+}
+
+export interface ConnectedDoctors {
+    username: string;
+    firstName: string;
+    lastName: string;
+    userId: number;
+    connectAt: Date;
+}
+
+export interface UserSearch {
+    username: string;
+    firstName: string;
+    lastName: string;
+    userId: number;
 }
