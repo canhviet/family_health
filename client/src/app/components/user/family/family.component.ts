@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FamilyService } from '../../../_services/family.service';
-import { DataResponse, UserInFamily, UserSearch } from '../../../../../types';
+import { AddNewMember, Family, UserInFamily, UserResponse, UserSearch } from '../../../../../types';
+import { UserService } from '../../../_services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddMemberComponent } from './add-member/add-member.component';
+import { first } from 'rxjs';
 
 @Component({
     selector: 'app-family',
@@ -8,17 +12,63 @@ import { DataResponse, UserInFamily, UserSearch } from '../../../../../types';
     styleUrl: './family.component.css'
 })
 export class FamilyComponent {
-    constructor(private familyService: FamilyService) { }
+    constructor(private familyService: FamilyService, private userService: UserService,
+        private dialog: MatDialog
+    ) { }
 
     users: UserInFamily[] = [];
 
+    userIsHead: boolean = false;
+
+    notInFamily: boolean = true;
+
+    family: Family = {
+        headId: 0,
+        familyId: 0,
+    };
+
+    user: UserResponse = {
+        userId: 0,
+        username: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        dob: new Date,
+        gender: '',
+        address: '',
+        phone: '',
+        healthInsuranceCode: '',
+        familyId: 0,
+        cityzenId: ''
+    };
+
     ngOnInit() {
-        this.familyService.viewFamilyOfUser(1).subscribe({
+        this.userService.viewById(1).subscribe({
             next: (res) => {
-                this.users = res.data;
+                this.user = res.data;
+
+                if (this.user.familyId != -1) {
+
+                    this.notInFamily = false;
+
+                    this.familyService.viewFamilyOfUser(this.user.userId).subscribe({
+                        next: (res) => {
+                            this.users = res.data;
+                        }
+                    });
+
+                    this.familyService.viewById(this.user.familyId).subscribe({
+                        next: (res) => {
+                            this.family = res.data;
+
+                            if (this.family.headId == this.user.userId) {
+                                this.userIsHead = true;
+                            }
+                        }
+                    })
+                }
             }
         });
-
     }
 
     searchTerm: string = '';
@@ -30,11 +80,32 @@ export class FamilyComponent {
             this.familyService.searchUser(1, this.searchTerm).subscribe({
                 next: (res) => {
                     this.filteredItems = res.data;
-                    console.log(this.filteredItems);
                 }
             });
         } else {
             this.filteredItems = [];
         }
+    }
+
+    addNewFamily() {
+        const f: Family = {
+            headId: this.user.userId
+        }
+
+        this.familyService.addNewFamily(f).subscribe(() => {
+            this.notInFamily = false;
+        });
+    }
+
+    addToFamily(userId: number) {
+
+        const data = {
+            headId: this.user.userId,
+            userId:userId
+        }
+
+        this.dialog.open(AddMemberComponent, {
+            width: '500px', data: data
+        });
     }
 }

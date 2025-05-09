@@ -9,9 +9,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import sgu.j2ee.dto.request.UserRequest;
 import sgu.j2ee.dto.response.UserResponse;
+import sgu.j2ee.exception.InvalidDataException;
 import sgu.j2ee.exception.ResourceNotFoundException;
 import sgu.j2ee.model.Role;
 import sgu.j2ee.model.User;
+import sgu.j2ee.repository.FamilyRepository;
 import sgu.j2ee.repository.RoleRepository;
 import sgu.j2ee.repository.UserRepository;
 import sgu.j2ee.service.UserService;
@@ -24,6 +26,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final FamilyRepository familyRepository;
 
     @Override
     public UserDetailsService userDetailsService() {
@@ -88,8 +91,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getUser(Long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
+        User user = userRepository.findById(userId).orElseThrow(() -> new InvalidDataException("User not found with id: " + userId));
+
+        return UserResponse.builder()
+            .address(user.getAddress())
+            .citizenId(user.getCitizenId())
+            .dob(user.getDob())
+            .email(user.getEmail())
+            .familyId(user.getFamily() != null ? user.getFamily().getFamilyId() : -1L)
+            .firstName(user.getFirstName())
+            .healthInsuranceCode(user.getHealthInsuranceCode())
+            .lastName(user.getLastName())
+            .phone(user.getPhone())
+            .username(user.getUsername())
+            .gender(user.getGender())
+            .userId(userId)
+            .build();
     }
 
     @Override

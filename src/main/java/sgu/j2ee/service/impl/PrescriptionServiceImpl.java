@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import sgu.j2ee.dto.request.MedicationRequest;
 import sgu.j2ee.dto.request.PrescriptionRequest;
+import sgu.j2ee.dto.response.MedicationResponse;
+import sgu.j2ee.dto.response.PresciptionResponse;
 import sgu.j2ee.exception.InvalidDataException;
 import sgu.j2ee.model.Medications;
 import sgu.j2ee.model.Prescriptions;
@@ -61,5 +63,35 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     private User getUserById(Long userId) {
         return userRepository.findById(userId)
             .orElseThrow(() -> new InvalidDataException("User not found with id: " + userId));
+    }
+
+    @Override
+    public List<PresciptionResponse> getByUserId(Long userId) {
+        List<Prescriptions> list = prescriptionRepository.findWithUserId(userId);
+
+        return list.stream().map(p -> PresciptionResponse.builder()
+                                .doctorUserId(p.getDoctor().getUserId())
+                                .medications(convertTMedicationResponses(p.getMedications()))
+                                .userId(userId)
+                                .prescriptionDate(p.getPrescriptionDate())
+                                .prescriptionId(p.getPrescriptionId())
+                                .notes(p.getNotes())
+                                .build()
+        
+        ).toList();
+    }
+
+    private List<MedicationResponse> convertTMedicationResponses(List<Medications> medications) {
+        return medications.stream().map(m -> MedicationResponse.builder()
+                                         .dosage(m.getDosage())
+                                         .endDate(m.getEndDate())
+                                         .startDate(m.getStartDate())
+                                         .frequency(m.getFrequency())
+                                         .instructions(m.getInstructions())
+                                         .medicationName(m.getMedicationName())
+                                         .medicationId(m.getMedicationId())
+                                         .quantity(m.getQuantity())
+                                         .build()   
+        ).toList();
     }
 }

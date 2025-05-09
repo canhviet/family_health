@@ -23,7 +23,7 @@ import { HomeComponent } from './components/user/home/home.component';
 import { OverviewComponent } from './components/user/overview/overview.component';
 import { AddMedicalComponent } from './components/doctor/medical-history/add-medical/add-medical.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { AddTestComponent } from './components/doctor/test-result/add-test/add-test.component';
@@ -38,6 +38,8 @@ import { ViewUserRecordComponent } from './components/view-user-record/view-user
 import { NavComponent } from './components/nav/nav.component';
 import { FamilyComponent } from './components/user/family/family.component';
 import { ConnectComponent } from './components/user/connect/connect.component';
+import { DocumentComponent } from './components/user/document/document.component';
+import { AddMemberComponent } from './components/user/family/add-member/add-member.component';
 
 @NgModule({
     declarations: [
@@ -66,6 +68,8 @@ import { ConnectComponent } from './components/user/connect/connect.component';
         NavComponent,
         FamilyComponent,
         ConnectComponent,
+        DocumentComponent,
+        AddMemberComponent,
     ],
     imports: [
         BrowserModule,

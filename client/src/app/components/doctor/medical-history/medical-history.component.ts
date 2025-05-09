@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Role, User } from '../../../../../types';
 import { MatDialog } from '@angular/material/dialog';
 import { AddMedicalComponent } from './add-medical/add-medical.component';
 
@@ -12,21 +11,6 @@ export class MedicalHistoryComponent {
 
     constructor(public dialog: MatDialog) { }
 
-    selectedUser: User = {
-        username: '',
-        passwordHash: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        dob: '',
-        gender: '',
-        address: '',
-        phone: '',
-        healthInsuranceCode: '',
-        familyId: 0,
-        role: { roleName: '' },
-        cityzenId: ''
-    };
 
     addMedicalRecord() {
         this.dialog.open(AddMedicalComponent, {

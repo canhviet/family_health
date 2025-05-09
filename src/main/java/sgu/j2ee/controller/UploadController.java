@@ -17,6 +17,8 @@ public class UploadController {
     @Autowired
     private CloudinaryService cloudinaryService;
 
+    
+
     @PostMapping
     public ResponseEntity<Map> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
         Map result = cloudinaryService.uploadFile(file);

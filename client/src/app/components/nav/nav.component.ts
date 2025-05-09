@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { JwtPayload } from '../../../../types';
 import { jwtDecode } from 'jwt-decode';
+import { ViewUserRecordComponent } from '../view-user-record/view-user-record.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private dialog: MatDialog) {}
 
     canViewDoctorApp: boolean = false;
 
@@ -18,7 +20,6 @@ export class NavComponent {
 
         if (token) {
             const decoded = jwtDecode<JwtPayload>(token.accessToken);
-            console.log(decoded.permissions);
             if (decoded.permissions.includes('FULL_ACCESS') || decoded.permissions.includes('DOCTOR')) {
                 this.canViewDoctorApp = true;
             }

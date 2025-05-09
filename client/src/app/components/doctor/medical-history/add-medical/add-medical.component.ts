@@ -15,8 +15,6 @@ export class AddMedicalComponent {
         private prescriptionService: PrescriptionService,
         private dialog: MatDialog) { }
 
-    uploadedUrl: string | null = null;
-
     record: MedicalHisory = {
         condition: '',
         diagnosisDate: new Date,
@@ -37,8 +35,7 @@ export class AddMedicalComponent {
 
 
     onSubmit() {
-        console.log(this.prescription);
-        this.prescriptionService.add(this.prescription).subscribe((data) => { console.log(data) });
+        this.prescriptionService.add(this.prescription).subscribe(() => { this.onClose });
     }
 
     onClose(): void {
@@ -60,14 +57,8 @@ export class AddMedicalComponent {
     }
 
     onUpload(): void {
-        const dialogRef = this.dialog.open(UploadComponent, {
+        this.dialog.open(UploadComponent, {
             width: '500px'
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            if (result && result.url) {
-                this.uploadedUrl = result.url;
-            }
         });
     }
 }

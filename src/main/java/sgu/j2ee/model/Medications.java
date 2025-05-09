@@ -1,8 +1,10 @@
 package sgu.j2ee.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -10,6 +12,8 @@ import java.util.Date;
 @Table(name = "tbl_medications")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Medications {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

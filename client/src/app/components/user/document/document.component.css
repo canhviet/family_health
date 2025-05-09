@@ -1,0 +1,25 @@
+.document-list {
+    padding: 20px;
+}
+
+.document-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.document-info {
+    margin-bottom: 10px;
+}
+
+.document-info h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.document-info p {
+    margin: 0.5rem 0;
+    color: #555;
+}

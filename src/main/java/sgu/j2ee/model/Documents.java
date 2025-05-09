@@ -1,13 +1,21 @@
 package sgu.j2ee.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "tbl_documents")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Documents {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +25,10 @@ public class Documents {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "medical_history_id")
-    private MedicalHistory medicalHistory;
-
     private String documentUrl;
     private String documentName;
-    private LocalDateTime uploadDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    private Date uploadDate;
 }

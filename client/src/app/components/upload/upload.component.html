@@ -3,6 +3,15 @@
         <mat-card-title>Upload File</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+        <mat-form-field appearance="fill">
+            <mat-label>name</mat-label>
+            <input
+                matInput
+                type="text"
+                [(ngModel)]="document.documentName"
+                name="documentName"
+            />
+        </mat-form-field>
         <input
             type="file"
             (change)="onFileSelected($event)"

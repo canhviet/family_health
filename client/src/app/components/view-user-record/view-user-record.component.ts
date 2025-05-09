@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PrescriptionService } from '../../_services/prescription.service';
+import { Prescription } from '../../../../types';
 
 @Component({
     selector: 'app-view-user-record',
@@ -10,5 +12,16 @@ export class ViewUserRecordComponent {
 
     onTabChange(index: number) {
         this.selectedTabIndex = index;
+    }
+
+    prescriptions: Prescription[] = [];
+
+    constructor(private prescriptionService: PrescriptionService) {}
+
+    ngOnInit() {
+        this.prescriptionService.viewByUser(3).subscribe({next: (res) => {
+            this.prescriptions = res.data;
+            console.log(this.prescriptions);
+        }});
     }
 }

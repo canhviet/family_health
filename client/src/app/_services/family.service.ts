@@ -16,6 +16,10 @@ export class FamilyService {
         return this.apiService.post(API + "add-new-member", body, {});
     }
 
+    addNewFamily = (body: any): Observable<any> => {
+        return this.apiService.post(API, body, {});
+    }
+
     viewFamilyOfUser = (familyId: number): Observable<any> => {
         return this.apiService.get(API + "user/" + familyId, { responseType: 'json' });
     }
@@ -23,4 +27,9 @@ export class FamilyService {
     searchUser = (userId: number, search: string): Observable<any> => {
         return this.apiService.get(API + userId + "/" + search, { responseType: 'json' });
     }
+
+    viewById = (familyId: number): Observable<any> => {
+        return this.apiService.get(API + familyId, { responseType: 'json' });
+    }
+
 }

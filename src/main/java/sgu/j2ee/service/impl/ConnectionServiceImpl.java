@@ -5,16 +5,21 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import sgu.j2ee.dto.request.ConnectionRequest;
 import sgu.j2ee.dto.response.UserConnected;
 import sgu.j2ee.dto.response.UserResponse;
+import sgu.j2ee.exception.InvalidDataException;
+import sgu.j2ee.model.MedicalConnections;
 import sgu.j2ee.model.User;
 import sgu.j2ee.repository.ConnectionRepository;
+import sgu.j2ee.repository.UserRepository;
 import sgu.j2ee.service.ConnectionService;
 
 @Service
 @RequiredArgsConstructor
 public class ConnectionServiceImpl implements ConnectionService {
     private final ConnectionRepository connectionRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<UserConnected> getDoctors(Long userId) {
@@ -27,8 +32,8 @@ public class ConnectionServiceImpl implements ConnectionService {
     }
 
     @Override
-    public List<UserResponse> searchUserNotConnect(Long userId, String search) {
-        List<User> users = connectionRepository.findUsersNotConnectedBySearch(userId, search);
+    public List<UserResponse> searchDoctorsNotConnect(Long userId, String search) {
+        List<User> users = connectionRepository.findDoctorsNotConnectedBySearch(userId, search);
 
         return users.stream().map(user -> UserResponse.builder()
                                     .firstName(user.getFirstName())
@@ -37,6 +42,23 @@ public class ConnectionServiceImpl implements ConnectionService {
                                     .username(user.getUsername())
                                     .build()      
         ).toList();
+    }
+
+    @Override
+    public Long addNewConnection(ConnectionRequest request) {
+        MedicalConnections connection = MedicalConnections.builder()
+                                        .doctor(getUserById(request.getDoctorId()))
+                                        .user(getUserById(request.getUserId()))
+                                        .build();
+
+        connectionRepository.save(connection);
+
+        return connection.getConnectId();
+    }
+
+    private User getUserById(Long userId) {
+        return userRepository.findById(userId)
+            .orElseThrow(() -> new InvalidDataException("User not found with id: " + userId));
     }
 
 }

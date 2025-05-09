@@ -1,0 +1,12 @@
+<div class="document-list">
+    <button (click)="onUpload()" class="btn btn-outline-secondary m-3">
+        Upload
+    </button>
+    <div *ngFor="let doc of documents" class="document-item">
+        <div class="document-info" (click)="openDocument(doc.documentUrl)">
+            <h3>{{ doc.documentName }}</h3>
+            <p>Uploaded on: {{ doc.uploadDate | date : "medium" }}</p>
+            <p>Click to view</p>
+        </div>
+    </div>
+</div>

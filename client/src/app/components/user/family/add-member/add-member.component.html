@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+    <div class="card">
+        <h5 class="card-header">Add User to your Family?</h5>
+        <div class="card-body">
+            <h5 class="card-title">relationship to you</h5>
+            <p class="card-text">
+                <input type="text" [(ngModel)]="request.relationship" name="relationship">
+            </p>
+            <a (click)="add()" class="btn btn-primary">ADD</a>
+        </div>
+    </div>
+</div>

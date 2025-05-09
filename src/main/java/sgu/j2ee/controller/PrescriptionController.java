@@ -1,6 +1,8 @@
 package sgu.j2ee.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +25,11 @@ public class PrescriptionController {
     public ResponseData<?> addPrescription(@RequestBody PrescriptionRequest request) {
         Long prescriptionId = prescriptionService.savePrescription(request);
         return new ResponseData<>(HttpStatus.CREATED.value(), "add prescription success", prescriptionId);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseData<?> getByUser(@PathVariable Long userId) {
+        return new ResponseData<>(HttpStatus.OK.value(), "view prescription by user success", this.prescriptionService.getByUserId(userId));
+
     }
 }

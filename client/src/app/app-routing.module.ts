@@ -15,6 +15,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { FamilyComponent } from './components/user/family/family.component';
 import { ConnectComponent } from './components/user/connect/connect.component';
+import { DocumentComponent } from './components/user/document/document.component';
 
 const routes: Routes = [
     {
@@ -60,6 +61,10 @@ const routes: Routes = [
             {
                 path: 'connect',
                 component: ConnectComponent
+            },
+            {
+                path: 'document',
+                component: DocumentComponent
             }
         ]
     },

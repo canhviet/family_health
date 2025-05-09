@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import sgu.j2ee.dto.request.AddNewMemberRequest;
+import sgu.j2ee.dto.request.FamilyRequest;
 import sgu.j2ee.dto.response.ResponseData;
 import sgu.j2ee.service.FamilyService;
 
@@ -25,6 +26,13 @@ public class FamilyController {
         return new ResponseData<>(HttpStatus.CREATED.value(), "add new member success");
     }
 
+    @PostMapping("/")
+    public ResponseData<?> addNewFamily(@RequestBody FamilyRequest request) {
+        this.familyService.addNewFamily(request);
+        return new ResponseData<>(HttpStatus.CREATED.value(), "add new family success");
+
+    }
+
     @GetMapping("/user/{familyId}")
     public ResponseData<?> viewUserInFamily(@PathVariable Long familyId) {
         return new ResponseData<>(HttpStatus.OK.value(), "view user in family success", this.familyService.viewUserInFamily(familyId));
@@ -33,5 +41,10 @@ public class FamilyController {
     @GetMapping("/{userId}/{search}")
     public ResponseData<?> search(@PathVariable("userId") Long userId, @PathVariable(value = "search", required = false) String search) {
         return new ResponseData<>(HttpStatus.OK.value(), "search user", this.familyService.searchUser(userId, search));
+    }
+
+    @GetMapping("/{familyId}")
+    public ResponseData<?> viewById(@PathVariable Long familyId) {
+        return new ResponseData<>(HttpStatus.OK.value(), "view family id", this.familyService.getById(familyId));
     }
 }

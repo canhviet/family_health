@@ -7,7 +7,32 @@
     />
     <div *ngIf="filteredItems.length > 0" class="suggestions">
         <div *ngFor="let item of filteredItems" class="suggestion-item">
-            {{ item }}
+            {{ item.username }}
+            <button (click)="addConnect(item.userId)">Add Connection</button>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div
+            class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4"
+            *ngFor="let d of doctors"
+        >
+            <div class="card" style="width: 100%">
+                <img
+                    src="../../../../assets/images/Avatar-PNG-Image.png"
+                    class="card-img-top rounded-circle"
+                />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ d.firstName }} {{ d.lastName }}
+                    </h5>
+                    <p class="card-text">
+                        {{ d.connectAt | date }}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

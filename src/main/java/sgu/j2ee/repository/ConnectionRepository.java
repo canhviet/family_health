@@ -21,16 +21,17 @@ public interface ConnectionRepository extends JpaRepository<MedicalConnections, 
         "FROM MedicalConnections mc WHERE mc.doctor.userId = :doctorId")
     List<UserConnected> findPatientsByDoctorId(@Param("doctorId") Long doctorId);
 
+    
     @Query("SELECT u FROM User u WHERE u.userId NOT IN (" +
-       "SELECT mc.user.userId FROM MedicalConnections mc WHERE mc.doctor.userId = :userId " +
-       "UNION " +
-       "SELECT mc.doctor.userId FROM MedicalConnections mc WHERE mc.user.userId = :userId" +
-       ") AND u.userId != :userId " +
-       "AND (LOWER(u.username) LIKE LOWER(CONCAT('%', :search, '%')) " +
-       "OR LOWER(u.lastName) LIKE LOWER(CONCAT('%', :search, '%')) " +
-       "OR LOWER(u.firstName) LIKE LOWER(CONCAT('%', :search, '%'))) " +
-       "ORDER BY u.userId FETCH FIRST 10 ROWS ONLY")
-    List<User> findUsersNotConnectedBySearch(@Param("userId") Long userId, 
-                                         @Param("search") String search);
-
+    "SELECT mc.user.userId FROM MedicalConnections mc WHERE mc.doctor.userId = :userId " +
+    "UNION " +
+    "SELECT mc.doctor.userId FROM MedicalConnections mc WHERE mc.user.userId = :userId" +
+    ") AND u.userId != :userId " +
+    "AND u.role.roleName = 'DOCTOR' " +
+    "AND (LOWER(u.username) LIKE LOWER(CONCAT('%', :search, '%')) " +
+    "OR LOWER(u.lastName) LIKE LOWER(CONCAT('%', :search, '%')) " +
+    "OR LOWER(u.firstName) LIKE LOWER(CONCAT('%', :search, '%'))) " +
+    "ORDER BY u.userId FETCH FIRST 10 ROWS ONLY")
+   List<User> findDoctorsNotConnectedBySearch(@Param("userId") Long userId, 
+                                        @Param("search") String search);
 }

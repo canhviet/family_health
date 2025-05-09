@@ -14,4 +14,12 @@ export class ConnectionService {
         return this.apiService.get(API + "doctors/" + userId, { responseType: 'json' });
     }
 
+    searchDoctors = (userId: number, search: string): Observable<any> => {
+        return this.apiService.get(API + userId + "/" + search, { responseType: 'json' });
+    }
+
+    add = (body: any): Observable<any> => {
+        return this.apiService.post(API, body, {});
+    };
+
 }

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import sgu.j2ee.dto.request.AddNewMemberRequest;
 import sgu.j2ee.dto.request.FamilyRequest;
+import sgu.j2ee.dto.response.FamilyResponse;
 import sgu.j2ee.dto.response.UserInFamilyResponse;
 import sgu.j2ee.dto.response.UserResponse;
 import sgu.j2ee.exception.InvalidDataException;
@@ -18,6 +20,7 @@ import sgu.j2ee.service.FamilyService;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class FamilyServiceImpl implements FamilyService {
     private final FamilyRepository familyRepository;
     private final UserRepository userRepository;
@@ -43,7 +46,7 @@ public class FamilyServiceImpl implements FamilyService {
 
         User user = getUserById(request.getHeadId());
         user.setFamily(family);
-        user.setRelationshipToHead("Master");
+        user.setRelationshipToHead("Head");
         userRepository.save(user);
     }
 
@@ -76,6 +79,15 @@ public class FamilyServiceImpl implements FamilyService {
                                     .username(user.getUsername())
                                     .build()      
         ).toList();
+    }
+
+    @Override
+    public FamilyResponse getById(Long familyId) {
+        Family f = familyRepository.findById(familyId).orElseThrow(() -> new InvalidDataException("Family not found with id: " + familyId));
+        return FamilyResponse.builder()
+                .familyId(familyId)
+                .headId(f.getHeadOfHousehold().getUserId())
+                .build();
     }
                             
 }

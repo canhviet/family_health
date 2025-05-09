@@ -50,19 +50,16 @@ export interface JwtPayload {
     exp: number;
 }
 
-export interface User {
-    userId?: number;
+export interface UserResponse {
+    userId: number;
     username: string;
-    passwordHash: string;
     email: string;
-    role: Role;
     firstName: string;
     lastName: string;
-    dob: string;
+    dob: Date;
     gender: string;
     address: string;
     phone: string;
-    relationshipToHead?: string;
     healthInsuranceCode: string;
     familyId: number;
     cityzenId: string;
@@ -140,7 +137,6 @@ export interface Document {
     documentName: string;
     documentUrl: string;
     uploadDate: Date;
-    MedicalHistoryId?: number;
     userId: number;
 }
 
@@ -196,4 +192,9 @@ export interface UserSearch {
     firstName: string;
     lastName: string;
     userId: number;
+}
+
+export interface AddConnection {
+    userId: number;
+    doctorId: number;
 }

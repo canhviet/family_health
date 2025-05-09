@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from '../../../../../types';
 
 @Component({
   selector: 'app-test-result',
@@ -7,19 +6,5 @@ import { User } from '../../../../../types';
   styleUrl: './test-result.component.css'
 })
 export class TestResultComponent {
-    selectedUser: User = {
-        username: '',
-        passwordHash: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        dob: '',
-        gender: '',
-        address: '',
-        phone: '',
-        healthInsuranceCode: '',
-        familyId: 0,
-        role: { roleName: '' },
-        cityzenId: ''
-    };
+
 }
