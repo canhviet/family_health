@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport
+        xmlns="http://jasperreports.sourceforge.net/jasperreports"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+        http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+        name="testResultReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    <parameter name="createdBy" class="java.lang.String"/>
+    <parameter name="userName" class="java.lang.String"/>
+    <field name="testType" class="java.lang.String"/>
+    <field name="result" class="java.lang.String"/>
+    <field name="datePerformed" class="java.time.LocalDate"/>
+    <field name="labName" class="java.lang.String"/>
+
+    <title>
+        <band height="70">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="30"/>
+                <textElement textAlignment="Center">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Test Result Report]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="40" width="555" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="12" isItalic="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Test Results for User: " + $P{userName}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <detail>
+        <band height="100">
+            <!-- Table Header -->
+            <staticText>
+                <reportElement x="0" y="30" width="150" height="20" backcolor="#D6EAF8"/> <!-- backcolor can be directly in reportElement -->
+                <box> <!-- Moved box here -->
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Test Type]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="150" y="30" width="150" height="20" backcolor="#D6EAF8"/>
+                <box> <!-- Moved box here -->
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Result]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="30" width="150" height="20" backcolor="#D6EAF8"/>
+                <box> <!-- Moved box here -->
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Date Performed]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="450" y="30" width="105" height="20" backcolor="#D6EAF8"/>
+                <box> <!-- Moved box here -->
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Lab Name]]></text>
+            </staticText>
+
+            <!-- Table Data -->
+            <textField>
+                <reportElement x="0" y="50" width="150" height="20"/>
+                <box> <!-- Moved box here -->
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{testType}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="150" y="50" width="150" height="20"/>
+                <box> <!-- Moved box here -->
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{result}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="300" y="50" width="150" height="20"/>
+                <box> <!-- Moved box here -->
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{datePerformed}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="450" y="50" width="105" height="20"/>
+                <box> <!-- Moved box here -->
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{labName}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
