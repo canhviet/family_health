@@ -1,1 +1,36 @@
-<p>add-immunization works!</p>
+<div mat-dialog-content>
+    <div class="form-field">
+        <mat-form-field appearance="fill">
+            <mat-label>vaccine name</mat-label>
+            <input
+                matInput
+                type="text"
+                [(ngModel)]="record.vaccineName"
+                name="vaccineName"
+            />
+        </mat-form-field>
+    </div>
+
+    <div class="form-field">
+        <mat-form-field appearance="fill">
+            <mat-label>provider</mat-label>
+            <input
+                matInput
+                type="text"
+                [(ngModel)]="record.provider"
+                name="provider"
+            />
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <div class="button-group">
+        <button (click)="onSubmit()" class="btn btn-outline-primary m-3" type="button">
+            Save
+        </button>
+        <button (click)="onClose()" class="btn btn-outline-danger m-3" type="button">
+            Close
+        </button>
+    </div>
+</div>
+

@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { JwtPayload } from '../../../../types';
 import { jwtDecode } from 'jwt-decode';
-import { ViewUserRecordComponent } from '../view-user-record/view-user-record.component';
-import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
-    constructor(private authService: AuthService, private dialog: MatDialog) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     canViewDoctorApp: boolean = false;
 
@@ -20,9 +19,14 @@ export class NavComponent {
 
         if (token) {
             const decoded = jwtDecode<JwtPayload>(token.accessToken);
-            if (decoded.permissions.includes('FULL_ACCESS') || decoded.permissions.includes('DOCTOR')) {
+            if (decoded.permissions.includes('FULL_ACCESS')) {
                 this.canViewDoctorApp = true;
             }
         }
+    }
+
+    logout() {
+        this.authService.removeToken();
+        this.router.navigate(['login']);
     }
 }

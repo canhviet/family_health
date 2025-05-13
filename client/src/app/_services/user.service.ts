@@ -14,4 +14,8 @@ export class UserService {
     viewById = (userId: number): Observable<any> => {
         return this.apiService.get(API + userId, { responseType: 'json' });
     }
+
+    update = (userId: number, body: any): Observable<any> => {
+        return this.apiService.put(API + "update/" + userId, body, { responseType: 'json' });
+    }
 }

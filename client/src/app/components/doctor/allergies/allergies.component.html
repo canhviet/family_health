@@ -1,0 +1,42 @@
+<div class="search-container">
+    <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+        class="search-input"
+    />
+    <div *ngIf="filteredItems.length > 0" class="suggestions">
+        <div *ngFor="let item of filteredItems" class="suggestion-item">
+            {{ item.username }} ({{item.firstName}} {{item.lastName}})
+            <button (click)="select(item)">Select</button>
+        </div>
+    </div>
+</div>
+
+<hr class="hr" />
+<div class="row mt-5">
+    <div class="col">
+        <p>First Name: {{ selectedUser.firstName }}</p>
+    </div>
+    <div class="col">
+        <p>Last Name:{{ selectedUser.lastName }}</p>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col">
+        <p>Health Insurance Code: {{ selectedUser.healthInsuranceCode }}</p>
+    </div>
+    <div class="col">
+        <p>Cityzen Id:{{ selectedUser.cityzenId }}</p>
+    </div>
+</div>
+
+<div class="button-group mt-5" *ngIf="this.selectedUser.username != ''">
+    <button
+        type="button"
+        class="btn btn-outline-primary me-3"
+        (click)="addMedicalRecord()"
+    >
+        Add New Record
+    </button>
+</div>

@@ -114,7 +114,7 @@ export interface Immunization {
 }
 
 export interface Allergy {
-    AlleryId?: number;
+    alleryId?: number;
     allergen: string;
     reaction: string;
     severity: string;
@@ -179,7 +179,7 @@ export interface UserInFamily {
     lastName: string;
 }
 
-export interface ConnectedDoctors {
+export interface ConnectedUsers {
     username: string;
     firstName: string;
     lastName: string;
@@ -197,4 +197,16 @@ export interface UserSearch {
 export interface AddConnection {
     userId: number;
     doctorId: number;
+}
+
+export interface UserUpdateRequest {
+    email: string;
+    firstName: string;
+    lastName: string;
+    dob: Date;
+    gender: string;
+    address: string;
+    phone: string;
+    healthInsuranceCode: string;
+    cityzenId: string;
 }

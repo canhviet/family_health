@@ -1,8 +1,10 @@
 package sgu.j2ee.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 @Table(name = "tbl_test_results")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TestResults {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

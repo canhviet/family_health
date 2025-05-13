@@ -17,9 +17,13 @@ public interface ConnectionRepository extends JpaRepository<MedicalConnections, 
        "FROM MedicalConnections mc WHERE mc.user.userId = :userId")
     List<UserConnected> findDoctorsByUserId(@Param("userId") Long userId);
 
-    @Query("SELECT mc.doctor.firstName AS firstName, mc.doctor.lastName AS lastName, mc.doctor.username AS username, mc.connectAt AS connectAt, mc.doctor.userId AS userId " +
-        "FROM MedicalConnections mc WHERE mc.doctor.userId = :doctorId")
-    List<UserConnected> findPatientsByDoctorId(@Param("doctorId") Long doctorId);
+    @Query("SELECT mc.user FROM MedicalConnections mc WHERE mc.doctor.userId = :doctorId " +
+           "AND (LOWER(mc.user.username) LIKE LOWER(CONCAT('%', :search, '%')) " +
+           "OR LOWER(mc.user.lastName) LIKE LOWER(CONCAT('%', :search, '%')) " +
+           "OR LOWER(mc.user.firstName) LIKE LOWER(CONCAT('%', :search, '%'))) " +
+           "ORDER BY mc.user.userId FETCH FIRST 10 ROWS ONLY")
+    List<User> findPatientsByDoctorIdAndSearch(@Param("doctorId") Long doctorId, 
+                                               @Param("search") String search);
 
     
     @Query("SELECT u FROM User u WHERE u.userId NOT IN (" +

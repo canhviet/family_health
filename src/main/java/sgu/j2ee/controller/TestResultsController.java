@@ -47,7 +47,7 @@ public class TestResultsController {
         return testResultsService.getTestResultsByType(testType);
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseData<?> createTestResult(@RequestBody TestResultsRequest request) {
         return testResultsService.createTestResult(request);
     }
