@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { MedicalHisory, Medication, Prescription } from '../../../../../../types';
 import { PrescriptionService } from '../../../../_services/prescription.service';
 import { UploadComponent } from '../../../upload/upload.component';
+import { AuthService } from '../../../../_services/auth.service';
 
 @Component({
     selector: 'app-add-medical',
@@ -11,8 +12,9 @@ import { UploadComponent } from '../../../upload/upload.component';
 })
 export class AddMedicalComponent {
     constructor(public dialogRef: MatDialogRef<AddMedicalComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
+        @Inject(MAT_DIALOG_DATA) public data: Number,
         private prescriptionService: PrescriptionService,
+        private authService: AuthService,
         private dialog: MatDialog) { }
 
     record: MedicalHisory = {
@@ -28,8 +30,8 @@ export class AddMedicalComponent {
     prescription: Prescription = {
         notes: '',
         prescriptionDate: new Date(),
-        doctorUserId: Number(2),
-        userId: Number(3),
+        doctorUserId: Number(this.authService.getTokenData()?.userId),
+        userId: Number(this.data),
         medications: []
     }
 

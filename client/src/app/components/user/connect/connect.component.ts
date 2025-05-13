@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ConnectionService } from '../../../_services/connection.service';
-import { AddConnection, ConnectedDoctors, UserSearch } from '../../../../../types';
+import { AddConnection, ConnectedUsers, UserSearch } from '../../../../../types';
 
 @Component({
     selector: 'app-connect',
@@ -10,7 +10,7 @@ import { AddConnection, ConnectedDoctors, UserSearch } from '../../../../../type
 export class ConnectComponent {
     constructor(private connectionService: ConnectionService) { }
 
-    doctors: ConnectedDoctors[] = [];
+    doctors: ConnectedUsers[] = [];
 
     ngOnInit() {
         this.connectionService.viewDoctors(1).subscribe({

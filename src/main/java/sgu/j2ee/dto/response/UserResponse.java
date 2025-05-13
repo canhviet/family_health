@@ -18,6 +18,6 @@ public class UserResponse {
     private String phone;
     private String address;
     private String healthInsuranceCode;
-    private String citizenId;
+    private String cityzenId;
     private Long familyId;
 }

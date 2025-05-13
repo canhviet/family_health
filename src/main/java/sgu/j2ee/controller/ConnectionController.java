@@ -35,4 +35,9 @@ public class ConnectionController {
 
     }
 
+    @GetMapping("/patients/{doctorId}/{search}")
+    public ResponseData<?> searchPatientsConnected(@PathVariable("doctorId") Long doctorId, @PathVariable(value = "search", required = false) String search) {
+        return new ResponseData<>(HttpStatus.OK.value(), "view doctors", this.connectionService.searchPatients(doctorId, search));
+    }
+
 }

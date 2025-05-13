@@ -27,8 +27,24 @@ public class ConnectionServiceImpl implements ConnectionService {
     }
 
     @Override
-    public List<UserConnected> getPatients(Long doctorId) {
-        return connectionRepository.findPatientsByDoctorId(doctorId);
+    public List<UserResponse> searchPatients(Long doctorId, String search) {
+        List<User> users = connectionRepository.findPatientsByDoctorIdAndSearch(doctorId, search);
+
+        return users.stream().map(user -> UserResponse.builder()
+                                .address(user.getAddress())
+                                .cityzenId(user.getCitizenId())
+                                .dob(user.getDob())
+                                .email(user.getEmail())
+                                .familyId(user.getFamily() != null ? user.getFamily().getFamilyId() : -1L)
+                                .firstName(user.getFirstName())
+                                .healthInsuranceCode(user.getHealthInsuranceCode())
+                                .lastName(user.getLastName())
+                                .phone(user.getPhone())
+                                .username(user.getUsername())
+                                .gender(user.getGender())
+                                .userId(user.getUserId())
+                                .build()    
+        ).toList();
     }
 
     @Override
@@ -36,11 +52,19 @@ public class ConnectionServiceImpl implements ConnectionService {
         List<User> users = connectionRepository.findDoctorsNotConnectedBySearch(userId, search);
 
         return users.stream().map(user -> UserResponse.builder()
-                                    .firstName(user.getFirstName())
-                                    .lastName(user.getLastName())
-                                    .userId(user.getUserId())
-                                    .username(user.getUsername())
-                                    .build()      
+                                .address(user.getAddress())
+                                .cityzenId(user.getCitizenId())
+                                .dob(user.getDob())
+                                .email(user.getEmail())
+                                .familyId(user.getFamily() != null ? user.getFamily().getFamilyId() : -1L)
+                                .firstName(user.getFirstName())
+                                .healthInsuranceCode(user.getHealthInsuranceCode())
+                                .lastName(user.getLastName())
+                                .phone(user.getPhone())
+                                .username(user.getUsername())
+                                .gender(user.getGender())
+                                .userId(user.getUserId())
+                                .build()    
         ).toList();
     }
 

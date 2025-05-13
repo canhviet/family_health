@@ -2,7 +2,10 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
 />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+/>
 <div class="profile-container">
     <div class="breadcrumb">
         <div class="breadcrumb-item">
@@ -21,63 +24,88 @@
     <p class="page-description">
         Update your personal information and medical documents
     </p>
-    <nav class="tab-navigation">
-        <div class="tab-item" (click)="scrollToSection('personal-info')">Personal Information</div>
-        <div class="tab-item" (click)="scrollToSection('medical-insurance')">Medical Insurance</div>
-        <div class="tab-item" (click)="scrollToSection('documents')">Documents</div>
-        <div class="tab-item" (click)="scrollToSection('professional-info')">Professional Info</div>
-    </nav>
 
     <section class="personal-info-section">
-        <div id="personal-info" style="margin-top: 100px;">
+        <div id="personal-info" style="margin-top: 100px">
             <h2>Personal Information</h2>
             <p>Details about personal information...</p>
             <div class="form-grid">
-                <div class="form-group" style="position: relative; flex: 1;">
-                    <label class="form-label">Full Name</label>
+                <div class="form-group" style="position: relative; flex: 1">
                     <div class="input-wrapper">
-                        <input
-                            type="text"
-                            value="Nguyễn Văn A"
-                            class="form-input"
-                        />
-                        <div class="fa-solid fa-user"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>First Name</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="selectedUser.firstName"
+                                name="firstName"
+                            />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Last Name</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="selectedUser.lastName"
+                                name="lastName"
+                            />
+                        </mat-form-field>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Date of Birth</label>
                     <div class="input-wrapper">
-                        <input type="text" value="01/01/1990" class="form-input" />
-                        <div class="fa-solid fa-calendar"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                        <mat-form-field appearance="fill">
+                            <input
+                                matInput
+                                [matDatepicker]="picker"
+                                [(ngModel)]="selectedUser.dob"
+                                name="dob"
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Phone Number</label>
-                    <div class="input-wrapper">
-                        <input type="text" value="0912345678" class="form-input" />
-                        <div class="fa-solid fa-phone"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
-                    </div>
+                    <mat-form-field appearance="fill">
+                        <input
+                            matInput
+                            type="text"
+                            [(ngModel)]="selectedUser.phone"
+                            name="phone"
+                        />
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Email</label>
                     <div class="input-wrapper">
-                        <input
-                            type="email"
-                            value="example@email.com"
-                            class="form-input"
-                        />
-                        <div class="fa-solid fa-inbox"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>condition</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="selectedUser.email"
+                                name="email"
+                            />
+                        </mat-form-field>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Address</label>
                     <div class="input-wrapper">
-                        <input
-                            type="text"
-                            value="123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh"
-                            class="form-input"
-                        />
-                        <div class="fa-solid fa-house"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                        <mat-form-field appearance="fill">
+                            <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="selectedUser.address"
+                                name="address"
+                            />
+                        </mat-form-field>
                     </div>
                 </div>
             </div>
@@ -85,151 +113,46 @@
     </section>
 
     <section class="insurance-section">
-        <div id="medical-insurance" style="margin-top: 100px;">
+        <div id="medical-insurance" style="margin-top: 100px">
             <h2 class="section-title">Medical Insurance</h2>
+        </div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label">CityzenId</label>
+                <div class="input-wrapper">
+                    <div class="input-wrapper">
+                        <mat-form-field appearance="fill">
+                            <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="selectedUser.cityzenId"
+                                name="cityzenId"
+                            />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="form-grid">
             <div class="form-group">
                 <label class="form-label">Insurance Number</label>
                 <div class="input-wrapper">
-                    <input type="text" value="BH123456789" class="form-input" />
-                    <div class="fa-solid fa-credit-card"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Expiration Date</label>
-                <div class="input-wrapper">
-                    <input type="text" value="31/12/2025" class="form-input" />
-                    <div class="fa-solid fa-calendar"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Insurance Provider</label>
-                <div class="input-wrapper">
-                    <input
-                        type="text"
-                        value="Bảo hiểm Y tế Việt Nam"
-                        class="form-input"
-                    />
-                    <div class="fa-solid fa-business-time"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="documents-section">
-        <div id="documents" style="margin-top: 100px;">
-            <h2 class="section-title">Medical Documents</h2>
-            <p class="section-description">
-                Upload your medical documents, test results, or prescriptions
-            </p>
-        </div>
-        <div class="upload-grid">
-            <div class="upload-box">
-                <div class="upload-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
-                <h3 class="upload-title">Upload Document</h3>
-                <p class="upload-description">
-                    Drag and drop files here or click to browse
-                </p>
-                <button class="upload-btn">Upload File</button>
-            </div>
-            <div class="upload-box">
-                <div class="upload-icon"><i class="fa-solid fa-photo-film"></i></div>
-                <h3 class="upload-title">Take Photo</h3>
-                <p class="upload-description">
-                    Use your camera to capture medical documents
-                </p>
-                <button class="upload-btn">Open Camera</button>
-            </div>
-        </div>
-
-        <div class="documents-list">
-            <h3 class="documents-title">Uploaded Documents</h3>
-            <div class="document-items">
-                <div class="document-item">
-                    <div class="document-icon"><i class="fa-solid fa-file-prescription"></i></div>
-                    <div class="document-info">
-                        <div class="document-name">Blood Test Results.pdf</div>
-                        <div class="document-date">Uploaded on 15/05/2023</div>
-                    </div>
-                    <div class="document-actions">
-                        <span class="fa-solid fa-eye"></span>
-                        <span class="fa-solid fa-download"></span>
-                        <span class="fa-solid fa-trash"></span>
+                    <div class="input-wrapper">
+                        <mat-form-field appearance="fill">
+                            <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="selectedUser.healthInsuranceCode"
+                                name="healthInsuranceCode"
+                            />
+                        </mat-form-field>
                     </div>
                 </div>
-                <div class="document-item">
-                    <div class="document-icon"><i class="fa-solid fa-file-prescription"></i></div>
-                    <div class="document-info">
-                        <div class="document-name">X-Ray Image.jpg</div>
-                        <div class="document-date">Uploaded on 03/04/2023</div>
-                    </div>
-                    <div class="document-actions">
-                        <span class="fa-solid fa-eye"></span>
-                        <span class="fa-solid fa-download"></span>
-                        <span class="fa-solid fa-trash"></span>
-                    </div>
-                </div>
-                <div class="document-item">
-                    <div class="document-icon"><i class="fa-solid fa-file-prescription"></i></div>
-                    <div class="document-info">
-                        <div class="document-name">
-                            Medical Prescription.pdf
-                        </div>
-                        <div class="document-date">Uploaded on 22/03/2023</div>
-                    </div>
-                    <div class="document-actions">
-                        <span class="fa-solid fa-eye"></span>
-                        <span class="fa-solid fa-download"></span>
-                        <span class="fa-solid fa-trash"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="professional-section">
-        <div id="professional-info" style="margin-top: 100px;">
-            <h2 class="section-title">Professional Information</h2>
-            <p class="section-description">For healthcare providers only</p>
-        </div>
-        <div class="form-grid">
-            <div class="form-group">
-                <label class="form-label">Specialization</label>
-                <div class="input-wrapper">
-                    <input type="text" value="Cardiology" class="form-input" />
-                    <div class="fa-solid fa-location-dot"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Medical License Number</label>
-                <div class="input-wrapper">
-                    <input type="text" value="ML987654321" class="form-input" />
-                    <div class="fa-solid fa-credit-card"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Workplace</label>
-                <div class="input-wrapper">
-                    <input
-                        type="text"
-                        value="Bệnh viện Đa khoa Trung ương"
-                        class="form-input"
-                    />
-                    <div class="fa-solid fa-business-time"  style="position: absolute;right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Professional Bio</label>
-                <textarea class="form-textarea">
-Cardiologist with 10+ years of experience specializing in interventional cardiology and heart disease prevention.</textarea
-                >
             </div>
         </div>
     </section>
 
     <div class="form-actions">
-        <button class="btn-save">Save Changes</button>
-        <button class="btn-cancel">Cancel</button>
+        <button class="btn-save" (click)="save()">Save Changes</button>
     </div>
 </div>
