@@ -21,11 +21,16 @@ spring:
     documentation:
       swagger-ui:
         base-url: /api
+  ai:
+    openai:
+      api-key: #insert API key here
+      chat:
+        model: gpt-3.5-turbo
 jwt:
   expiryHour: 1
   expiryDay: 14
-  accessKey: B4h/HsBea1KQOo0HSF8x+5F4N5KoLhZlgNgdZod0jYE=
-  refreshKey: EGQb+V9raSWyfXM3AAtbGP0RxGcmPUZ4UU2ZEySHi30=
-  resetKey: thgSg7z69yy/lCCfssBnNnqliySBe7JGN6Ljx9ZHvFU=
+  accessKey: Kr8wKak/9wdnyQr5DxVOB9XCzHlSqjMUwAFErLxY4w8=
+  refreshKey: RxQYdMPpgTjMENN8KvBWqg4IzPSyn4Z1uPGVS6GrSxA=
+  resetKey: HxrOJXyXpQ/WfWOMa10/Q3ZLc2GJx6teNxjcaQr+/qc=
 
   
