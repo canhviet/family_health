@@ -28,6 +28,6 @@ export class NavComponent {
 
     logout() {
         this.cookieServie.delete('token');
-        this.router.navigate(['login']);
+        this.router.navigate(['']);
     }
 }

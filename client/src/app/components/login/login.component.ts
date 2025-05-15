@@ -26,18 +26,7 @@ export class LoginComponent {
         password: '',
     };
 
-    ngOnInit() {
-        if(this.authService.getTokenData == null) {
-            this.router.navigate(['login']);
-        }
-
-        if (this.authService.isTokenExpired()) {
-            this.authService.removeToken();
-            this.router.navigate(['login']);
-        } else {
-            this.router.navigate(['home']);
-        }
-    }
+    ngOnInit() {}
 
     onSubmit(form: any) {
         if (form.valid) {

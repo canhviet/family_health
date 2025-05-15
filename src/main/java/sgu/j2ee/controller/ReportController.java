@@ -29,7 +29,7 @@ public class ReportController {
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDisposition(
             ContentDisposition.builder("attachment") // or "attachment" to download
-                .filename("bao_cao.pdf")
+                .filename("test_" + testResultId +".pdf")
                 .build()
         );
 
@@ -44,7 +44,7 @@ public class ReportController {
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDisposition(
             ContentDisposition.builder("attachment") // or "attachment" to download
-                .filename("don_thuoc.pdf")
+                .filename("prescription_" + prescriptionId +".pdf")
                 .build()
         );
 

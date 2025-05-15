@@ -1,13 +1,20 @@
 package sgu.j2ee.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "tbl_medical_history")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MedicalHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,7 +10,7 @@ import lombok.Getter;
 @Builder
 public class PresciptionResponse {
     private Long userId;
-    private Long doctorUserId;
+    private String doctorName;
     private Date prescriptionDate;
     private String notes;
     private List<MedicationResponse> medications;

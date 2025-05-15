@@ -1,14 +1,13 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
-const API = 'http://localhost:8083/api/prescription/';
+const API = 'http://localhost:8083/api/history/';
 
 @Injectable({
     providedIn: 'root'
 })
-export class PrescriptionService {
+export class HistoryService {
 
     constructor(private apiService: ApiService) { }
 
@@ -23,5 +22,4 @@ export class PrescriptionService {
     reminder = (userId: number) : Observable<any> => {
         return this.apiService.get(API + "reminder/" + userId, { responseType: 'json' });
     }
-
 }

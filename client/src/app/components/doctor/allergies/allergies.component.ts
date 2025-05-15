@@ -4,6 +4,7 @@ import { AddAllergyComponent } from './add-allergy/add-allergy.component';
 import { UserResponse, DataResponse } from '../../../../../types';
 import { AuthService } from '../../../_services/auth.service';
 import { ConnectionService } from '../../../_services/connection.service';
+import { ViewUserRecordComponent } from '../../view-user-record/view-user-record.component';
 
 @Component({
     selector: 'app-allergies',
@@ -62,6 +63,14 @@ export class AllergiesComponent {
             width: '30vw',
             height: 'auto',
             data: this.selectedUser.userId
+        });
+    }
+
+    openRecords(userId: number) {
+        this.dialog.open(ViewUserRecordComponent, {
+            width: '90vw',
+            height: 'auto',
+            data: userId
         });
     }
 

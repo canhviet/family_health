@@ -4,6 +4,7 @@ import { AddMedicalComponent } from './add-medical/add-medical.component';
 import { DataResponse, UserResponse } from '../../../../../types';
 import { ConnectionService } from '../../../_services/connection.service';
 import { AuthService } from '../../../_services/auth.service';
+import { ViewUserRecordComponent } from '../../view-user-record/view-user-record.component';
 
 @Component({
     selector: 'app-medical-history',
@@ -56,6 +57,8 @@ export class MedicalHistoryComponent {
 
     select(user: UserResponse) {
         this.selectedUser = user;
+        this.searchTerm = '';
+        this.filteredItems = [];
     }
 
     addMedicalRecord() {
@@ -63,6 +66,14 @@ export class MedicalHistoryComponent {
             width: '90vw',
             height: 'auto',
             data: this.selectedUser.userId
+        });
+    }
+
+    openRecords(userId: number) {
+        this.dialog.open(ViewUserRecordComponent, {
+            width: '90vw',
+            height: 'auto',
+            data: userId
         });
     }
 

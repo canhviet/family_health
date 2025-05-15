@@ -41,10 +41,10 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             tap((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    // this.toastr.success(
-                    //     event.statusText || 'Success',
-                    //     `Request Successful - ${event.status}`
-                    // );
+                    this.toastr.success(
+                        event.statusText || 'Success',
+                        `Request Successful - ${event.status}`
+                    );
                 }
             }),
             catchError((error: HttpErrorResponse) => {

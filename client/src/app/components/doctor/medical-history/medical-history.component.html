@@ -1,3 +1,4 @@
+<h2>Medical Checkup</h2>
 <div class="search-container">
     <input
         type="text"
@@ -7,7 +8,7 @@
     />
     <div *ngIf="filteredItems.length > 0" class="suggestions">
         <div *ngFor="let item of filteredItems" class="suggestion-item">
-            {{ item.username }} ({{item.firstName}} {{item.lastName}})
+            {{ item.username }} ({{ item.firstName }} {{ item.lastName }})
             <button (click)="select(item)">Select</button>
         </div>
     </div>
@@ -19,7 +20,7 @@
         <p>First Name: {{ selectedUser.firstName }}</p>
     </div>
     <div class="col">
-        <p>Last Name:{{ selectedUser.lastName}}</p>
+        <p>Last Name:{{ selectedUser.lastName }}</p>
     </div>
 </div>
 <div class="row mt-5">
@@ -32,6 +33,13 @@
 </div>
 
 <div class="button-group mt-5" *ngIf="this.selectedUser.username != ''">
+    <button
+        type="button"
+        class="btn btn-outline-primary me-3"
+        (click)="openRecords(this.selectedUser.userId)"
+    >
+        View Records of User
+    </button>
     <button
         type="button"
         class="btn btn-outline-primary me-3"

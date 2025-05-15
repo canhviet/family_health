@@ -4,6 +4,7 @@
         [(ngModel)]="searchTerm"
         (input)="onSearch()"
         class="search-input"
+        placeholder="Search Users To Add Your Family"
     />
     <div *ngIf="filteredItems.length > 0" class="suggestions">
         <div *ngFor="let item of filteredItems" class="suggestion-item">
@@ -52,7 +53,7 @@
                         {{ u.firstName }} {{ u.lastName }}
                     </h5>
                     <p class="card-text">{{ u.relationshipToHead }}</p>
-                    <a href="#" class="btn btn-primary">View Records</a>
+                    <button (click)="openRecords(u.userId)" class="btn btn-primary" *ngIf="!(u.userId == this.user.userId)">View Records</button>
                 </div>
             </div>
         </div>

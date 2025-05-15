@@ -4,6 +4,7 @@
         [(ngModel)]="searchTerm"
         (input)="onSearch()"
         class="search-input"
+        placeholder="Search Doctors to Add Your Connection"
     />
     <div *ngIf="filteredItems.length > 0" class="suggestions">
         <div *ngFor="let item of filteredItems" class="suggestion-item">

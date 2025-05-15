@@ -1,16 +1,16 @@
 <div class="overview">
     <div class="overview-container">
         <div class="nav-item">Overview</div>
-        <div class="welcome-text">Welcome, Nguyễn Văn A</div>
+        <div class="welcome-text">Welcome, {{this.selectedUser.firstName}} {{this.selectedUser.lastName}}</div>
         <div class="quick-actions-grid" [attr.space]="12">
             <div class="section-title">Revisit Schedule</div>
             <div class="medication-container">
-                <div class="medication-list">
+                <div class="medication-list" *ngIf="revisit.doctorName != null">
                     <div class="medication-item">
                         <div class="medication-icon"><i class="fa-solid fa-hospital"></i></div>
                         <div class="medication-info">
                             <span style="font-style: italic"
-                                >Lisinopril 10mg</span
+                                >Date: {{revisit.revisitDate | date: "medium"}}</span
                             ><br />
                             <span
                                 style="
@@ -19,21 +19,21 @@
                                     color: rgba(0, 0, 0, 1);
                                 "
                             >
-                                1 tablet, once daily with breakfast
+                                Doctor: {{revisit.doctorName}}
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="section-title">Medication Schedule</div>
-            <div class="medication-container">
-                <div class="medication-list">
+            <div class="section-title">Medication Schedule(Today)</div>
+            <div class="medication-container" *ngIf="medications.length > 0">
+                <div class="medication-list" *ngFor="let m of medications">
                     <div class="medication-item">
                         <div class="medication-icon"><i class="fa-solid fa-kit-medical"></i></div>
                         <div class="medication-info">
                             <span style="font-style: italic"
-                                >Lisinopril 10mg</span
+                                >{{m.medicationName}} {{m.dosage}}</span
                             ><br />
                             <span
                                 style="
@@ -42,24 +42,7 @@
                                     color: rgba(0, 0, 0, 1);
                                 "
                             >
-                                1 tablet, once daily with breakfast
-                            </span>
-                        </div>
-                    </div>
-                    <div class="medication-item">
-                        <div class="medication-icon"><i class="fa-solid fa-kit-medical"></i></div>
-                        <div class="medication-info">
-                            <span style="font-style: italic"
-                                >Atorvastatin 20mg</span
-                            ><br />
-                            <span
-                                style="
-                                    font-weight: 400;
-                                    font-style: italic;
-                                    color: rgba(0, 0, 0, 1);
-                                "
-                            >
-                                1 tablet, once daily before bedtime
+                                {{m.quantity}}, {{m.frequency}}, {{m.instructions}}
                             </span>
                         </div>
                     </div>

@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Primary;
 @RequiredArgsConstructor
 public class AppConfig {
     private String[] WHITE_LIST = {
-         "/",
+        "/",
         "/auth/**",
         "/swagger-ui/**",
         "/swagger-ui.html",

@@ -32,4 +32,9 @@ public class PrescriptionController {
         return new ResponseData<>(HttpStatus.OK.value(), "view prescription by user success", this.prescriptionService.getByUserId(userId));
 
     }
+
+    @GetMapping("/reminder/{userId}")
+    public ResponseData<?> reminder(@PathVariable Long userId) {
+        return new ResponseData<>(HttpStatus.OK.value(), "view medication by userId", this.prescriptionService.reminders(userId));
+    }
 }

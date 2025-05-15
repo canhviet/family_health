@@ -1,158 +1,97 @@
 <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
 />
 <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
 />
+
 <div class="profile-container">
-    <div class="breadcrumb">
-        <div class="breadcrumb-item">
-            <span>Dashboard</span>
-            <div>
-                <div
-                    innerHTML="<svg id='1:98' layer-name='SVG' width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg' class='chevron' style='margin: 0 8px'>
-          <path d='M6.02002 12L10.02 8L6.02002 4' stroke='#6B7280' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'></path>
-        </svg>"
-                ></div>
-            </div>
-        </div>
-        <div class="breadcrumb-current">Profile Management</div>
+  <!-- Page Header -->
+  <h1 class="page-title">Profile Management</h1>
+  <p class="page-description">
+    Update your informations
+  </p>
+
+  <!-- Personal Information -->
+  <section class="personal-info-section" id="personal-info">
+    <h2 class="section-title">Personal Information</h2>
+    <p class="section-description">Details about your personal information...</p>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">First Name</label>
+        <mat-form-field appearance="fill">
+          <input matInput type="text" [(ngModel)]="selectedUser.firstName" name="firstName" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Last Name</label>
+        <mat-form-field appearance="fill">
+          <input matInput type="text" [(ngModel)]="selectedUser.lastName" name="lastName" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Date of Birth</label>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [(ngModel)]="selectedUser.dob"
+            name="dob"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <mat-form-field appearance="fill">
+          <input matInput type="text" [(ngModel)]="selectedUser.phone" name="phone" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <mat-form-field appearance="fill">
+          <input matInput type="email" [(ngModel)]="selectedUser.email" name="email" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Address</label>
+        <mat-form-field appearance="fill">
+          <input matInput type="text" [(ngModel)]="selectedUser.address" name="address" />
+        </mat-form-field>
+      </div>
     </div>
-    <h1 class="page-title">Profile Management</h1>
-    <p class="page-description">
-        Update your personal information and medical documents
-    </p>
+  </section>
 
-    <section class="personal-info-section">
-        <div id="personal-info" style="margin-top: 100px">
-            <h2>Personal Information</h2>
-            <p>Details about personal information...</p>
-            <div class="form-grid">
-                <div class="form-group" style="position: relative; flex: 1">
-                    <div class="input-wrapper">
-                        <mat-form-field appearance="fill">
-                            <mat-label>First Name</mat-label>
-                            <input
-                                matInput
-                                type="text"
-                                [(ngModel)]="selectedUser.firstName"
-                                name="firstName"
-                            />
-                        </mat-form-field>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Last Name</mat-label>
-                            <input
-                                matInput
-                                type="text"
-                                [(ngModel)]="selectedUser.lastName"
-                                name="lastName"
-                            />
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Date of Birth</label>
-                    <div class="input-wrapper">
-                        <mat-form-field appearance="fill">
-                            <input
-                                matInput
-                                [matDatepicker]="picker"
-                                [(ngModel)]="selectedUser.dob"
-                                name="dob"
-                            />
-                            <mat-datepicker-toggle
-                                matSuffix
-                                [for]="picker"
-                            ></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Phone Number</label>
-                    <mat-form-field appearance="fill">
-                        <input
-                            matInput
-                            type="text"
-                            [(ngModel)]="selectedUser.phone"
-                            name="phone"
-                        />
-                    </mat-form-field>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <div class="input-wrapper">
-                        <mat-form-field appearance="fill">
-                            <mat-label>condition</mat-label>
-                            <input
-                                matInput
-                                type="text"
-                                [(ngModel)]="selectedUser.email"
-                                name="email"
-                            />
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Address</label>
-                    <div class="input-wrapper">
-                        <mat-form-field appearance="fill">
-                            <input
-                                matInput
-                                type="text"
-                                [(ngModel)]="selectedUser.address"
-                                name="address"
-                            />
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Medical Insurance -->
+  <section class="insurance-section" id="medical-insurance">
+    <h2 class="section-title">Medical Insurance</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Citizen ID</label>
+        <mat-form-field appearance="fill">
+          <input matInput type="text" [(ngModel)]="selectedUser.cityzenId" name="cityzenId" />
+        </mat-form-field>
+      </div>
 
-    <section class="insurance-section">
-        <div id="medical-insurance" style="margin-top: 100px">
-            <h2 class="section-title">Medical Insurance</h2>
-        </div>
-        <div class="form-grid">
-            <div class="form-group">
-                <label class="form-label">CityzenId</label>
-                <div class="input-wrapper">
-                    <div class="input-wrapper">
-                        <mat-form-field appearance="fill">
-                            <input
-                                matInput
-                                type="text"
-                                [(ngModel)]="selectedUser.cityzenId"
-                                name="cityzenId"
-                            />
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-grid">
-            <div class="form-group">
-                <label class="form-label">Insurance Number</label>
-                <div class="input-wrapper">
-                    <div class="input-wrapper">
-                        <mat-form-field appearance="fill">
-                            <input
-                                matInput
-                                type="text"
-                                [(ngModel)]="selectedUser.healthInsuranceCode"
-                                name="healthInsuranceCode"
-                            />
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="form-actions">
-        <button class="btn-save" (click)="save()">Save Changes</button>
+      <div class="form-group">
+        <label class="form-label">Insurance Number</label>
+        <mat-form-field appearance="fill">
+          <input matInput type="text" [(ngModel)]="selectedUser.healthInsuranceCode" name="healthInsuranceCode" />
+        </mat-form-field>
+      </div>
     </div>
+  </section>
+
+  <!-- Save Button -->
+  <div class="form-actions">
+    <button class="btn-save" (click)="save()">Save Changes</button>
+  </div>
 </div>

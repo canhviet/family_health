@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { Allergy, Immunization, Prescription, TestResults } from '../../../../../types';
+import { Allergy, Immunization, MedicalHistoryResponse, PrescriptionResponse, TestResponse } from '../../../../../types';
 import { PrescriptionService } from '../../../_services/prescription.service';
 import { AllergyService } from '../../../_services/allergy.service';
 import { ImmunizationService } from '../../../_services/immunization.service';
 import { TestResultService } from '../../../_services/test-result.service';
+import { AuthService } from '../../../_services/auth.service';
+import { HistoryService } from '../../../_services/history.service';
+import { ReportService } from '../../../_services/report.service';
 
 @Component({
     selector: 'app-medical-records',
@@ -12,54 +15,97 @@ import { TestResultService } from '../../../_services/test-result.service';
 })
 export class MedicalRecordsComponent {
     tabs = [
-        { label: 'Tab 1' },
-        { label: 'Tab 2' },
-        { label: 'Tab 3' }
+        { label: 'Medical Checkup' },
+        { label: 'Prescriptions' },
+        { label: 'Immunizations' },
+        { label: 'Allergies' },
+        { label: 'Tests' }
     ];
 
     selectedTabIndex = 0;
 
 
-    prescriptions: Prescription[] = [];
+    prescriptions: PrescriptionResponse[] = [];
 
     allgergies: Allergy[] = [];
 
     immunizations: Immunization[] = [];
 
-    testResults: TestResults[] = []
+    testResults: TestResponse[] = [];
+
+    medicalHistories: MedicalHistoryResponse[] = [];
 
     constructor(private prescriptionService: PrescriptionService,
         private testResultService: TestResultService,
         private immunizationService: ImmunizationService,
-        private allergyService: AllergyService
+        private allergyService: AllergyService,
+        private authService: AuthService,
+        private historyService: HistoryService,
+        private reportService: ReportService
     ) { }
 
     ngOnInit() {
-        this.prescriptionService.viewByUser(3).subscribe({
+        const userId = Number(this.authService.getTokenData()?.userId);
+
+        this.historyService.viewByUser(userId).subscribe({
+            next: (res) => {
+                this.medicalHistories = res.data;
+            }
+        })
+
+        this.prescriptionService.viewByUser(userId).subscribe({
             next: (res) => {
                 this.prescriptions = res.data;
-                console.log(this.prescriptions);
             }
         });
 
-        this.allergyService.viewByUser(1).subscribe({
+        this.allergyService.viewByUser(userId).subscribe({
             next: (res) => {
                 this.allgergies = res.data;
-                console.log(this.allgergies);
             }
         });
 
-        this.testResultService.viewByUser(1).subscribe({
+        this.testResultService.viewByUser(userId).subscribe({
             next: (res) => {
                 this.testResults = res.data;
-                console.log(this.testResults);
             }
         });
 
-        this.immunizationService.viewByUser(1).subscribe({
+        this.immunizationService.viewByUser(userId).subscribe({
             next: (res) => {
                 this.immunizations = res.data;
-                console.log(this.immunizations);
+            }
+        });
+    }
+
+    printPrescription(prescriptionId: number) {
+        this.reportService.prescription(prescriptionId).subscribe({
+            next: (blob: Blob) => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `prescription_${prescriptionId}.pdf`; // Match server’s filename
+                a.click();
+                window.URL.revokeObjectURL(url);
+            },
+            error: (err) => {
+                console.error('Error downloading PDF:', err);
+            }
+        });
+    }
+
+    printTestResult(testId: number) {
+        this.reportService.test(testId).subscribe({
+            next: (blob: Blob) => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `test_${testId}.pdf`;
+                a.click();
+                window.URL.revokeObjectURL(url);
+            },
+            error: (err) => {
+                console.error('Error downloading PDF:', err);
             }
         });
     }

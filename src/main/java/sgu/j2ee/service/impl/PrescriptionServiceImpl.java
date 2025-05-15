@@ -16,6 +16,7 @@ import sgu.j2ee.exception.InvalidDataException;
 import sgu.j2ee.model.Medications;
 import sgu.j2ee.model.Prescriptions;
 import sgu.j2ee.model.User;
+import sgu.j2ee.repository.MedicationRepository;
 import sgu.j2ee.repository.PrescriptionRepository;
 import sgu.j2ee.repository.UserRepository;
 import sgu.j2ee.service.PrescriptionService;
@@ -27,6 +28,7 @@ import sgu.j2ee.service.PrescriptionService;
 public class PrescriptionServiceImpl implements PrescriptionService {
     private final UserRepository userRepository;
     private final PrescriptionRepository prescriptionRepository;
+    private final MedicationRepository medicationRepository;
 
     @Override
     public Long savePrescription(PrescriptionRequest request) {
@@ -70,7 +72,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         List<Prescriptions> list = prescriptionRepository.findWithUserId(userId);
 
         return list.stream().map(p -> PresciptionResponse.builder()
-                                .doctorUserId(p.getDoctor().getUserId())
+                                .doctorName(p.getDoctor().getFirstName() + " " + p.getDoctor().getLastName())
                                 .medications(convertTMedicationResponses(p.getMedications()))
                                 .userId(userId)
                                 .prescriptionDate(p.getPrescriptionDate())
@@ -92,6 +94,24 @@ public class PrescriptionServiceImpl implements PrescriptionService {
                                          .medicationId(m.getMedicationId())
                                          .quantity(m.getQuantity())
                                          .build()   
+        ).toList();
+    }
+
+    @Override
+    public List<MedicationResponse> reminders(Long userId) {
+        List<Medications> list = medicationRepository.findMedicationsForTodayByUserId(userId);
+
+        return list.stream().map(
+            m -> MedicationResponse.builder()
+            .dosage(m.getDosage())
+            .endDate(m.getEndDate())
+            .startDate(m.getStartDate())
+            .frequency(m.getFrequency())
+            .instructions(m.getInstructions())
+            .medicationId(m.getMedicationId())
+            .medicationName(m.getMedicationName())
+            .quantity(m.getQuantity())
+            .build()
         ).toList();
     }
 }

@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddMemberComponent } from './add-member/add-member.component';
 import { first } from 'rxjs';
 import { AuthService } from '../../../_services/auth.service';
+import { ViewUserRecordComponent } from '../../view-user-record/view-user-record.component';
 
 @Component({
     selector: 'app-family',
@@ -109,6 +110,17 @@ export class FamilyComponent {
 
         this.dialog.open(AddMemberComponent, {
             width: '500px', data: data
+        });
+
+        this.searchTerm = '';
+        this.filteredItems = [];
+    }
+
+    openRecords(userId: number) {
+        this.dialog.open(ViewUserRecordComponent, {
+            width: '90vw',
+            height: 'auto',
+            data: userId
         });
     }
 }

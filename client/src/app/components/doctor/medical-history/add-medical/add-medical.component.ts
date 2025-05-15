@@ -1,9 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MedicalHisory, Medication, Prescription } from '../../../../../../types';
+import { MedicalHistory, Medication, Prescription } from '../../../../../../types';
 import { PrescriptionService } from '../../../../_services/prescription.service';
 import { UploadComponent } from '../../../upload/upload.component';
 import { AuthService } from '../../../../_services/auth.service';
+import { HistoryService } from '../../../../_services/history.service';
 
 @Component({
     selector: 'app-add-medical',
@@ -15,16 +16,17 @@ export class AddMedicalComponent {
         @Inject(MAT_DIALOG_DATA) public data: Number,
         private prescriptionService: PrescriptionService,
         private authService: AuthService,
+        private historyService: HistoryService,
         private dialog: MatDialog) { }
 
-    record: MedicalHisory = {
+    record: MedicalHistory = {
         condition: '',
         diagnosisDate: new Date,
         notes: '',
         revisitDate: new Date,
         treatingDoctor: '',
-        userId: 0,
-        doctorUserId: 0
+        userId: Number(this.data),
+        doctorUserId: Number(this.authService.getTokenData()?.userId)
     };
 
     prescription: Prescription = {
@@ -37,7 +39,9 @@ export class AddMedicalComponent {
 
 
     onSubmit() {
-        this.prescriptionService.add(this.prescription).subscribe(() => { this.onClose });
+        this.historyService.add(this.record).subscribe(() => {
+            this.prescriptionService.add(this.prescription).subscribe(() => { this.onClose });
+        })
     }
 
     onClose(): void {

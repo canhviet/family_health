@@ -43,9 +43,9 @@ export class ConnectComponent {
             doctorId: doctorId
         }
 
-        this.connectionService.add(request).subscribe({next: () => {
-            this.searchTerm = '';
-            this.filteredItems = [];
-        }});
+        this.connectionService.add(request).subscribe();
+
+        this.searchTerm = '';
+        this.filteredItems = [];
     }
 }

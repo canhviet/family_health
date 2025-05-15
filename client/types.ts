@@ -1,30 +1,30 @@
-import { HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpContext, HttpParams } from '@angular/common/http';
 
 export interface Options {
     headers?:
-    | HttpHeaders
-    | {
-        [header: string]: string | string[];
-    };
-    observe?: 'body';
+        | HttpHeaders
+        | {
+              [header: string]: string | string[];
+          };
+    observe?: 'body' | 'events' | 'response'; // Include all possible observe values
     context?: HttpContext;
     params?:
-    | HttpParams
-    | {
-        [param: string]:
-        | string
-        | number
-        | boolean
-        | ReadonlyArray<string | number | boolean>;
-    };
+        | HttpParams
+        | {
+              [param: string]:
+                  | string
+                  | number
+                  | boolean
+                  | ReadonlyArray<string | number | boolean>;
+          };
     reportProgress?: boolean;
-    responseType?: 'json';
+    responseType?: 'json' | 'blob' | 'arraybuffer' | 'text'; // Include all HttpClient response types
     withCredentials?: boolean;
     transferCache?:
-    | {
-        includeHeaders?: string[];
-    }
-    | boolean;
+        | {
+              includeHeaders?: string[];
+          }
+        | boolean;
 }
 
 export interface PaginationParams {
@@ -85,6 +85,15 @@ export interface Prescription {
     medications: Medication[];
 }
 
+export interface PrescriptionResponse {
+    prescriptionId: number;
+    notes: string;
+    prescriptionDate: Date;
+    doctorName: string;
+    userId: number;
+    medications: Medication[];
+}
+
 export interface Medication {
     medicationId?: number;
     dosage: string;
@@ -99,6 +108,15 @@ export interface Medication {
 export interface TestResults {
     testId?: number;
     datePerfomed: Date;
+    labName: string;
+    result: string;
+    testType: string;
+    userId: number;
+}
+
+export interface TestResponse {
+    testId: number;
+    datePerformed: Date;
     labName: string;
     result: string;
     testType: string;
@@ -147,8 +165,7 @@ export interface DataResponse {
     data: any;
 }
 
-export interface MedicalHisory {
-    historyId?: number;
+export interface MedicalHistory {
     condition: string;
     diagnosisDate: Date;
     notes: string;
@@ -156,6 +173,17 @@ export interface MedicalHisory {
     treatingDoctor: string;
     userId: number;
     doctorUserId: number;
+}
+
+export interface MedicalHistoryResponse {
+    historyId: number;
+    condition: string;
+    diagnosisDate: Date;
+    notes: string;
+    revisitDate: Date;
+    treatingDoctor: string;
+    userId: number;
+    doctorName: string;
 }
 
 export interface ResetPassword {

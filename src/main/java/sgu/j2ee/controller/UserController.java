@@ -27,7 +27,7 @@ public class UserController {
         return new ResponseData<>(HttpStatus.OK.value(), "get user by Id", this.userService.getUser(userId));
     }
 
-    @PutMapping("/update/{userUd}")
+    @PutMapping("/update/{userId}")
     public ResponseData<?> updateUser(@PathVariable Long userId, @RequestBody UserUpdateRequest request) {
         this.userService.updateUser(userId, request);
         return new ResponseData<>(HttpStatus.OK.value(), "update user by Id");

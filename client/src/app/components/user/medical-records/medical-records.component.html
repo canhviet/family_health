@@ -13,16 +13,54 @@
     <div class="tab-content">
         <ng-container [ngSwitch]="selectedTabIndex">
             <div *ngSwitchCase="0">
-                <h2>Content of Tab 1</h2>
-                <p>This is the content for the first tab.</p>
+                <div *ngFor="let m of medicalHistories" class="document-item">
+                    <div class="document-info">
+                        <h3>Condition: {{ m.condition }}</h3>
+                        <p>Doctor: {{m.doctorName}}</p>
+                        <p>Treating: {{m.treatingDoctor}}</p>
+                        <p>Notes: {{m.notes}}</p>
+                        <p>Date: {{ m.diagnosisDate | date : "medium" }}</p>
+                        <p>Revisit Date: {{ m.revisitDate| date : "medium" }}</p>
+                    </div>
+                </div>
             </div>
             <div *ngSwitchCase="1">
-                <h2>Content of Tab 2</h2>
-                <p>This is the content for the second tab.</p>
+                <div *ngFor="let p of prescriptions" class="document-item">
+                    <div class="document-info" (click)="printPrescription(p.prescriptionId)">
+                        <h3>Date: {{ p.prescriptionDate | date : "medium" }}</h3>
+                        <p>Doctor: {{ p.doctorName}}</p>
+                        <p>Click to print pdf file</p>
+                    </div>
+                </div>
             </div>
             <div *ngSwitchCase="2">
-                <h2>Content of Tab 3</h2>
-                <p>This is the content for the third tab.</p>
+                <div *ngFor="let i of immunizations" class="document-item">
+                    <div class="document-info">
+                        <h3>Vaccine name: {{i.vaccineName}}</h3>
+                        <p>Provider: {{i.provider}}</p>
+                        <p>Date: {{ i.dateAdministered| date : "medium" }}</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngSwitchCase="3">
+                <div *ngFor="let a of allgergies" class="document-item">
+                    <div class="document-info">
+                        <h3>Allergen {{a.allergen}}</h3>
+                        <p>Reaction: {{a.reaction}}</p>
+                        <p>Severity {{ a.severity}}</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngSwitchCase="4">
+                <div *ngFor="let t of testResults" class="document-item">
+                    <div class="document-info" (click)="printTestResult(t.testId)">
+                        <h3>Date: {{ t.datePerformed| date : "medium" }}</h3>
+                        <p>Type: {{t.testType}}</p>
+                        <p>Lab: {{ t.labName }}</p>
+                        <p>Result: {{ t.result}}</p>
+                        <p>Click to print pdf file</p>
+                    </div>
+                </div>
             </div>
         </ng-container>
     </div>

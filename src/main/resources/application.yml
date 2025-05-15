@@ -23,9 +23,13 @@ spring:
         base-url: /api
   ai:
     openai:
-      api-key: #insert API key here
+      api-key: 
       chat:
         model: gpt-3.5-turbo
+  cloud:
+    function:
+      scan:
+        enabled: false
 jwt:
   expiryHour: 1
   expiryDay: 14

@@ -1,6 +1,6 @@
 <nav class="topbar">
     <div class="topbar-left">
-        <span>Dr. John Doe</span>
+        <span>Dr.{{this.selectedUser.firstName}} {{this.selectedUser.lastName}}</span>
     </div>
     <div class="topbar-right">
         <button class="logout-btn" (click)="goHome()">
