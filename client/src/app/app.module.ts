@@ -41,6 +41,7 @@ import { ConnectComponent } from './components/user/connect/connect.component';
 import { DocumentComponent } from './components/user/document/document.component';
 import { AddMemberComponent } from './components/user/family/add-member/add-member.component';
 import { MatListModule } from '@angular/material/list';
+import {ChatbotComponent} from "./components/chatbot/chatbot.component";
 
 @NgModule({
     declarations: [
@@ -71,6 +72,7 @@ import { MatListModule } from '@angular/material/list';
         ConnectComponent,
         DocumentComponent,
         AddMemberComponent,
+        ChatbotComponent
     ],
     imports: [
         BrowserModule,
