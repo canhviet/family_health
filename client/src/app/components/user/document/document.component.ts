@@ -3,6 +3,7 @@ import { DocumentService } from '../../../_services/document.service';
 import { Document } from '../../../../../types';
 import { UploadComponent } from '../../upload/upload.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../../_services/auth.service';
 
 @Component({
     selector: 'app-document',
@@ -10,13 +11,13 @@ import { MatDialog } from '@angular/material/dialog';
     styleUrl: './document.component.css'
 })
 export class DocumentComponent {
-    constructor(private documentService: DocumentService, private dialog: MatDialog) { }
+    constructor(private documentService: DocumentService, private dialog: MatDialog , private authService: AuthService) { }
 
     documents: Document[] = [];
 
     ngOnInit() {
 
-        this.documentService.getByUser(1).subscribe({
+        this.documentService.getByUser(Number(this.authService.getTokenData()?.userId)).subscribe({
             next: (res) => {
                 this.documents = res.data;
             }

@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UploadService } from '../../_services/upload.service';
 import { Document } from '../../../../types';
 import { DocumentService } from '../../_services/document.service';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
     selector: 'app-upload',
@@ -10,6 +11,23 @@ import { DocumentService } from '../../_services/document.service';
     styleUrls: ['./upload.component.css']
 })
 export class UploadComponent {
+
+    constructor(
+        private uploadService: UploadService,
+        public dialogRef: MatDialogRef<UploadComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private documentService: DocumentService,
+        private authService: AuthService
+    ) { }
+
+    ngOnInit() {
+        if(this.data) {
+            this.document.userId = Number(this.data);
+        } else {
+            this.document.userId = Number(this.authService.getTokenData()?.userId);
+        }
+    }
+
     selectedFile: File | null = null;
     previewUrl: string | null = null;
     uploading = false;
@@ -19,15 +37,8 @@ export class UploadComponent {
         documentName: '',
         documentUrl: '',
         uploadDate: new Date,
-        userId: 1
+        userId: 0
     };
-
-    constructor(
-        private uploadService: UploadService,
-        public dialogRef: MatDialogRef<UploadComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
-        private documentService: DocumentService
-    ) { }
 
     onFileSelected(event: Event): void {
         const input = event.target as HTMLInputElement;
