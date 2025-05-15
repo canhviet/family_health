@@ -59,8 +59,10 @@ export class AddMedicalComponent {
     }
 
     onUpload(): void {
+        const id = this.prescription.userId;
         this.dialog.open(UploadComponent, {
-            width: '500px'
+            width: '500px',
+            data: id
         });
     }
 }

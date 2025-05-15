@@ -5,6 +5,7 @@ import { UserService } from '../../../_services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddMemberComponent } from './add-member/add-member.component';
 import { first } from 'rxjs';
+import { AuthService } from '../../../_services/auth.service';
 
 @Component({
     selector: 'app-family',
@@ -13,7 +14,7 @@ import { first } from 'rxjs';
 })
 export class FamilyComponent {
     constructor(private familyService: FamilyService, private userService: UserService,
-        private dialog: MatDialog
+        private dialog: MatDialog, private authService: AuthService
     ) { }
 
     users: UserInFamily[] = [];
@@ -21,6 +22,8 @@ export class FamilyComponent {
     userIsHead: boolean = false;
 
     notInFamily: boolean = true;
+
+    selectedUserId: number = Number(this.authService.getTokenData()?.userId);
 
     family: Family = {
         headId: 0,
@@ -43,7 +46,7 @@ export class FamilyComponent {
     };
 
     ngOnInit() {
-        this.userService.viewById(1).subscribe({
+        this.userService.viewById(this.selectedUserId).subscribe({
             next: (res) => {
                 this.user = res.data;
 
@@ -51,7 +54,7 @@ export class FamilyComponent {
 
                     this.notInFamily = false;
 
-                    this.familyService.viewFamilyOfUser(this.user.userId).subscribe({
+                    this.familyService.viewFamilyOfUser(this.user.familyId).subscribe({
                         next: (res) => {
                             this.users = res.data;
                         }
@@ -77,7 +80,7 @@ export class FamilyComponent {
 
     onSearch() {
         if (this.searchTerm.trim()) {
-            this.familyService.searchUser(1, this.searchTerm).subscribe({
+            this.familyService.searchUser(this.selectedUserId, this.searchTerm).subscribe({
                 next: (res) => {
                     this.filteredItems = res.data;
                 }

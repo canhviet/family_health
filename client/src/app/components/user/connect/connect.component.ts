@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ConnectionService } from '../../../_services/connection.service';
 import { AddConnection, ConnectedUsers, UserSearch } from '../../../../../types';
+import { AuthService } from '../../../_services/auth.service';
 
 @Component({
     selector: 'app-connect',
@@ -8,12 +9,14 @@ import { AddConnection, ConnectedUsers, UserSearch } from '../../../../../types'
     styleUrl: './connect.component.css'
 })
 export class ConnectComponent {
-    constructor(private connectionService: ConnectionService) { }
+    constructor(private connectionService: ConnectionService, private authService: AuthService) { }
 
     doctors: ConnectedUsers[] = [];
 
+    selectedUserId: number = Number(this.authService.getTokenData()?.userId);
+
     ngOnInit() {
-        this.connectionService.viewDoctors(1).subscribe({
+        this.connectionService.viewDoctors(this.selectedUserId).subscribe({
             next: (res) => {
                 this.doctors = res.data;
             }
@@ -26,7 +29,7 @@ export class ConnectComponent {
 
     onSearch() {
         if (this.searchTerm.trim()) {
-            this.connectionService.searchDoctors(1, this.searchTerm).subscribe({next: (res) => {
+            this.connectionService.searchDoctors(this.selectedUserId, this.searchTerm).subscribe({next: (res) => {
                 this.filteredItems = res.data;
             }})
         } else {
@@ -36,7 +39,7 @@ export class ConnectComponent {
 
     addConnect(doctorId: number) {
         const request: AddConnection = {
-            userId: 1,
+            userId: this.selectedUserId,
             doctorId: doctorId
         }
 

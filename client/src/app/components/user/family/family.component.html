@@ -1,4 +1,4 @@
-<div class="search-container">
+<div class="search-container" *ngIf="userIsHead">
     <input
         type="text"
         [(ngModel)]="searchTerm"
@@ -11,7 +11,11 @@
                 <div class="card-body">
                     <p>{{ item.firstName }} {{ item.lastName }}</p>
                     <p>{{ item.username }}</p>
-                    <button *ngIf="userIsHead" class="btn btn-outline-secondary m-3" (click) = "addToFamily(item.userId)">
+                    <button
+                        *ngIf="userIsHead"
+                        class="btn btn-outline-secondary m-3"
+                        (click)="addToFamily(item.userId)"
+                    >
                         Add To Family
                     </button>
                 </div>
@@ -21,7 +25,9 @@
 </div>
 
 <div *ngIf="notInFamily">
-    <button class="btn btn-outline-secondary m-3" (click)="addNewFamily()">Create Family</button>
+    <button class="btn btn-outline-secondary m-3" (click)="addNewFamily()">
+        Create Family
+    </button>
 </div>
 
 <div class="container mt-5">
@@ -39,7 +45,10 @@
                     <h5 class="card-title" *ngIf="u.userId == this.user.userId">
                         {{ u.firstName }} {{ u.lastName }}(You)
                     </h5>
-                    <h5 class="card-title" *ngIf="!(u.userId == this.user.userId)">
+                    <h5
+                        class="card-title"
+                        *ngIf="!(u.userId == this.user.userId)"
+                    >
                         {{ u.firstName }} {{ u.lastName }}
                     </h5>
                     <p class="card-text">{{ u.relationshipToHead }}</p>
