@@ -1,18 +1,15 @@
-<!-- Nút mở chatbot -->
-<div class="chatbot-button" (click)="toggleChat()">
-    💬
-</div>
-
-<!-- Hộp thoại chatbot -->
-<div class="chatbot-container" *ngIf="isOpen">
-    <div class="chatbot-header">
-        <span>Chatbot</span>
-        <button (click)="toggleChat()">✖</button>
+<div class="chat-container">
+    <div class="messages">
+        <div *ngFor="let msg of messages"
+             [class.user-message]="msg.isUser"
+             [class.bot-message]="!msg.isUser">
+            {{ msg.content }}
+        </div>
     </div>
-
-    <div class="chatbot-body">
-        <div class="response">{{ response }}</div>
-        <textarea [(ngModel)]="message" placeholder="Nhập tin nhắn..."></textarea>
-        <button (click)="sendMessage()">Gửi</button>
+    <div class="input-area">
+        <input [(ngModel)]="userInput"
+               (keyup.enter)="sendMessage()"
+               placeholder="Type a message...">
+        <button (click)="sendMessage()">Send</button>
     </div>
 </div>

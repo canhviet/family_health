@@ -36,6 +36,13 @@ public class PreFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return path.contains("/api/chat") ||
+                request.getMethod().equals("OPTIONS") ||
+                path.startsWith("/auth/");
+    }
+    @Override
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         
         log.info("---------- doFilterInternal ----------");

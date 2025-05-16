@@ -23,7 +23,7 @@ spring:
         base-url: /api
   ai:
     openai:
-      api-key: 
+      api-key: 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
       chat:
         model: gpt-3.5-turbo
   cloud:
