@@ -8,7 +8,7 @@
     />
     <div *ngIf="filteredItems.length > 0" class="suggestions">
         <div *ngFor="let item of filteredItems" class="suggestion-item">
-            {{ item.username }}
+            {{ item.username }} ({{item.firstName}} {{item.lastName}})
             <button (click)="addConnect(item.userId)">Add Connection</button>
         </div>
     </div>

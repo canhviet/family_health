@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(Long userId, UserUpdateRequest request) {
         User user = userRepository.findById(userId).orElseThrow(() -> new InvalidDataException("User not found with id: " + userId));
         user.setAddress(request.getAddress());
-        user.setCitizenId(request.getCitizenId());
+        user.setCitizenId(request.getCityzenId());
         user.setDob(request.getDob());
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());

@@ -21,7 +21,6 @@
     border-color: #007bff;
 }
 
-/* Suggestions dropdown */
 .suggestions {
     position: absolute;
     top: 100%;
@@ -31,28 +30,41 @@
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 6px 6px;
-    max-height: 240px;
+    max-height: 220px;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Each suggestion item */
 .suggestion-item {
-    padding: 12px;
-    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
     cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+    color: #333;
 }
 
 .suggestion-item:hover {
     background-color: #f9f9f9;
 }
 
-/* Card inside suggestion */
-.suggestion-item .card {
-    margin: 0;
-    border: none;
-    box-shadow: none;
+.suggestion-item button {
+    padding: 4px 10px;
+    border: 1px solid #007bff;
+    background-color: transparent;
+    color: #007bff;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-item button:hover {
+    background-color: #007bff;
+    color: #fff;
 }
 
 /* User card display */

@@ -8,19 +8,14 @@
     />
     <div *ngIf="filteredItems.length > 0" class="suggestions">
         <div *ngFor="let item of filteredItems" class="suggestion-item">
-            <div class="card">
-                <div class="card-body">
-                    <p>{{ item.firstName }} {{ item.lastName }}</p>
-                    <p>{{ item.username }}</p>
-                    <button
-                        *ngIf="userIsHead"
-                        class="btn btn-outline-secondary m-3"
-                        (click)="addToFamily(item.userId)"
-                    >
-                        Add To Family
-                    </button>
-                </div>
-            </div>
+            {{ item.username }} ({{ item.firstName }} {{ item.lastName }})
+            <button
+                *ngIf="userIsHead"
+                class="btn btn-outline-secondary m-3"
+                (click)="addToFamily(item.userId)"
+            >
+                Add To Family
+            </button>
         </div>
     </div>
 </div>
@@ -53,7 +48,13 @@
                         {{ u.firstName }} {{ u.lastName }}
                     </h5>
                     <p class="card-text">{{ u.relationshipToHead }}</p>
-                    <button (click)="openRecords(u.userId)" class="btn btn-primary" *ngIf="!(u.userId == this.user.userId)">View Records</button>
+                    <button
+                        (click)="openRecords(u.userId)"
+                        class="btn btn-primary"
+                        *ngIf="!(u.userId == this.user.userId)"
+                    >
+                        View Records
+                    </button>
                 </div>
             </div>
         </div>
