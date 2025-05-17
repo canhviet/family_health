@@ -42,7 +42,7 @@ public class AppConfig {
             "/webjars/**",
             "/api/upload",
             "/api/**",
-            "/api/chat",
+            "/api/chat/**",
     };
 
     private final UserService userService;

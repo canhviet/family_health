@@ -22,10 +22,12 @@ spring:
       swagger-ui:
         base-url: /api
   ai:
-    openai:
-      api-key: #enter your openai api key here
-      chat:
-        model: gpt-3.5-turbo
+    groq:
+      api-key: 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
+      model: llama3-70b-8192
+  autoconfigure:
+    exclude:
+      - org.springframework.ai.autoconfigure.openai.OpenAiAutoConfiguration
   cloud:
     function:
       scan:
@@ -36,5 +38,3 @@ jwt:
   accessKey: Kr8wKak/9wdnyQr5DxVOB9XCzHlSqjMUwAFErLxY4w8=
   refreshKey: RxQYdMPpgTjMENN8KvBWqg4IzPSyn4Z1uPGVS6GrSxA=
   resetKey: HxrOJXyXpQ/WfWOMa10/Q3ZLc2GJx6teNxjcaQr+/qc=
-
-  
