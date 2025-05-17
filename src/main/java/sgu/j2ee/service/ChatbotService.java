@@ -7,70 +7,54 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import sgu.j2ee.dto.request.ChatRequest;
 import sgu.j2ee.dto.response.ChatResponse;
-
-import jakarta.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 @Service
 @Slf4j
 public class ChatbotService {
-    @Value("${spring.ai.openai.api-key}")
+    @Value("${spring.ai.groq.api-key}")
     private String apiKey;
 
-    private static final String OPENAI_URL = "https://api.openai.com/v1/chat/completions";
+    private static final String GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
     private final RestTemplate restTemplate;
 
     public ChatbotService() {
         this.restTemplate = new RestTemplate();
     }
 
-    @PostConstruct
-    private void validateConfig() {
-        if (apiKey == null || apiKey.isEmpty() || apiKey.equals("${spring.ai.openai.api-key}")) {
-            log.error("OpenAI API key is not configured!");
-        } else {
-            log.info("OpenAI API key is configured");
-        }
-    }
-
     public ChatResponse generateResponse(ChatRequest request) {
-        if (apiKey == null || apiKey.isEmpty() || apiKey.equals("${spring.ai.openai.api-key}")) {
-            return new ChatResponse("API key not configured. Please check your application.properties file.");
-        }
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + apiKey);
-
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("model", "gpt-3.5-turbo");
-        requestBody.put("messages", Arrays.asList(
-                Map.of("role", "user", "content", request.getMessage())
-        ));
-        requestBody.put("temperature", 0.7);
-
-        HttpEntity<Map<String, Object>> httpRequest = new HttpEntity<>(requestBody, headers);
-
         try {
-            log.info("Sending request to OpenAI API");
-            ResponseEntity<Map> response = restTemplate.postForEntity(OPENAI_URL, httpRequest, Map.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setBearerAuth(apiKey.trim());
 
-            Map<String, Object> responseBody = response.getBody();
-            if (responseBody == null) {
-                log.error("Received null response body from OpenAI API");
-                return new ChatResponse("Error: Received null response from OpenAI API");
+            var requestBody = Map.of(
+                    "model", "llama3-70b-8192",  // Groq's model
+                    "messages", List.of(
+                            Map.of("role", "user", "content", request.getMessage())
+                    ),
+                    "temperature", 0.7
+            );
+
+            HttpEntity<Map<String, Object>> httpRequest = new HttpEntity<>(requestBody, headers);
+            log.info("Sending request to Groq API");
+
+            ResponseEntity<Map> response = restTemplate.postForEntity(GROQ_URL, httpRequest, Map.class);
+
+            if (response.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+                log.error("Unauthorized: Invalid API key");
+                return new ChatResponse("Error: Invalid API key");
             }
 
-            List<Map<String, Object>> choices = (List<Map<String, Object>>) responseBody.get("choices");
-            Map<String, Object> message_response = (Map<String, Object>) choices.get(0).get("message");
-            String content = (String) message_response.get("content");
+            Map<String, Object> responseBody = response.getBody();
+            var choices = (List<Map<String, Object>>) responseBody.get("choices");
+            var message = (Map<String, Object>) choices.get(0).get("message");
+            String content = (String) message.get("content");
 
             return new ChatResponse(content.trim());
         } catch (Exception e) {
-            log.error("Error calling OpenAI API: {}", e.getMessage());
+            log.error("Error calling Groq API: {}", e.getMessage());
             return new ChatResponse("Error: " + e.getMessage());
         }
     }
